@@ -1,7 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\LoginController;
+use App\Http\Controllers\HomeController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -13,6 +14,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+// Route::get('/', function () {
+//     return view('welcome');
+// });
+
+Route::get('/', [LoginController::class, 'login'])->name('login');
+Route::post('loginaksi', [LoginController::class, 'loginaksi'])->name('loginaksi');
+Route::middleware(['auth'])->group(function () {
+    Route::get('home', [HomeController::class, 'index'])->name('home');
+    Route::get('logoutaksi', [LoginController::class, 'logoutaksi'])->name('logoutaksi');
 });
