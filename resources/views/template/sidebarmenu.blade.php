@@ -17,10 +17,16 @@
             </a>
             <ul class="submenu ">
                 <li class="submenu-item  ">
-                    {{-- <a href="{{ route('produk') }}" class="submenu-link">Produk</a> --}}
+                    <a href="{{ route('guru') }}" class="submenu-link">Guru</a>
                 </li>
                 <li class="submenu-item  ">
-                    {{-- <a href="{{ route('kategori') }}" class="submenu-link">Kategori</a> --}}
+                    <a href="{{ route('siswa') }}" class="submenu-link">Siswa</a>
+                </li>
+                <li class="submenu-item  ">
+                    <a href="{{ route('semester') }}" class="submenu-link">semester</a>
+                </li>
+                <li class="submenu-item  ">
+                    <a href="{{ route('mapel') }}" class="submenu-link">Mata Pelajaran</a>
                 </li>
             </ul>
         </li>

@@ -11,7 +11,7 @@
  Target Server Version : 100427 (10.4.27-MariaDB)
  File Encoding         : 65001
 
- Date: 20/05/2024 21:33:19
+ Date: 26/05/2024 11:26:55
 */
 
 SET NAMES utf8mb4;
@@ -22,137 +22,162 @@ SET FOREIGN_KEY_CHECKS = 0;
 -- ----------------------------
 DROP TABLE IF EXISTS `guru_m`;
 CREATE TABLE `guru_m`  (
-  `id` int NOT NULL,
+  `id` bigint NOT NULL AUTO_INCREMENT,
   `namalengkap` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of guru_m
 -- ----------------------------
-INSERT INTO `guru_m` VALUES (1, 'Guru A');
+INSERT INTO `guru_m` VALUES (1, 'Irma Yunita, S.Kom');
 
 -- ----------------------------
 -- Table structure for hasilraport_t
 -- ----------------------------
 DROP TABLE IF EXISTS `hasilraport_t`;
 CREATE TABLE `hasilraport_t`  (
-  `id` int NOT NULL,
+  `id` bigint NOT NULL AUTO_INCREMENT,
   `objectmatpelfk` int NOT NULL,
   `objectsiswafk` int NOT NULL,
   `nilai` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-  PRIMARY KEY (`id`) USING BTREE,
-  INDEX `hasilraport_t_objectmatpelfk_matpel_m_id`(`objectmatpelfk` ASC) USING BTREE,
-  INDEX `hasilraport_t_objectsiswafk_siswa_m_id`(`objectsiswafk` ASC) USING BTREE,
-  CONSTRAINT `hasilraport_t_objectmatpelfk_matpel_m_id` FOREIGN KEY (`objectmatpelfk`) REFERENCES `matpel_m` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
-  CONSTRAINT `hasilraport_t_objectsiswafk_siswa_m_id` FOREIGN KEY (`objectsiswafk`) REFERENCES `siswa_m` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+  `ket` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 9 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of hasilraport_t
 -- ----------------------------
-INSERT INTO `hasilraport_t` VALUES (1, 1, 1, '50');
-INSERT INTO `hasilraport_t` VALUES (2, 2, 1, '100');
-INSERT INTO `hasilraport_t` VALUES (3, 1, 2, '80');
-INSERT INTO `hasilraport_t` VALUES (4, 2, 2, '60');
+INSERT INTO `hasilraport_t` VALUES (1, 1, 1, '77', 'Lulus Cukup');
+INSERT INTO `hasilraport_t` VALUES (2, 2, 1, '72', 'Lulus Cukup');
+INSERT INTO `hasilraport_t` VALUES (3, 3, 1, '72', 'Lulus Cukup');
+INSERT INTO `hasilraport_t` VALUES (4, 4, 1, '72', 'Lulus Cukup');
+INSERT INTO `hasilraport_t` VALUES (5, 5, 1, '77', 'Kompeten');
+INSERT INTO `hasilraport_t` VALUES (6, 6, 1, '77', 'Kompeten');
+INSERT INTO `hasilraport_t` VALUES (7, 7, 1, '72', 'Lulus Cukup');
+INSERT INTO `hasilraport_t` VALUES (8, 8, 1, '72', 'Lulus Cukup');
+
+-- ----------------------------
+-- Table structure for jenismapel_m
+-- ----------------------------
+DROP TABLE IF EXISTS `jenismapel_m`;
+CREATE TABLE `jenismapel_m`  (
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `jenismatpel` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 5 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of jenismapel_m
+-- ----------------------------
+INSERT INTO `jenismapel_m` VALUES (1, 'Normatif');
+INSERT INTO `jenismapel_m` VALUES (2, 'Adatif');
+INSERT INTO `jenismapel_m` VALUES (3, 'Produktif');
+INSERT INTO `jenismapel_m` VALUES (4, 'Muatan Lokal');
 
 -- ----------------------------
 -- Table structure for jurusan_m
 -- ----------------------------
 DROP TABLE IF EXISTS `jurusan_m`;
 CREATE TABLE `jurusan_m`  (
-  `id` int NOT NULL,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `kdjurusan` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `jurusan` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `bidangjurusan` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 5 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of jurusan_m
 -- ----------------------------
-INSERT INTO `jurusan_m` VALUES (1, 'TKJ');
-INSERT INTO `jurusan_m` VALUES (2, 'TKR');
+INSERT INTO `jurusan_m` VALUES (1, 'TKJ', 'Teknik Komputer Jaringan', 'Teknik Informasi & Komunikasi');
+INSERT INTO `jurusan_m` VALUES (2, 'TKR', 'Teknik Kendaraan Ringan', 'Teknik Otomotif');
+INSERT INTO `jurusan_m` VALUES (3, 'TAV', 'Teknik Audio Video', 'Teknik Elektro');
+INSERT INTO `jurusan_m` VALUES (4, 'TSM', 'Teknik Sepeda Motor', 'Teknik Otomotif');
 
 -- ----------------------------
 -- Table structure for kelas_m
 -- ----------------------------
 DROP TABLE IF EXISTS `kelas_m`;
 CREATE TABLE `kelas_m`  (
-  `id` int NOT NULL,
+  `id` bigint NOT NULL AUTO_INCREMENT,
   `kelas` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 4 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of kelas_m
 -- ----------------------------
-INSERT INTO `kelas_m` VALUES (1, '10');
-INSERT INTO `kelas_m` VALUES (2, '11');
-INSERT INTO `kelas_m` VALUES (3, '12');
+INSERT INTO `kelas_m` VALUES (1, 'X ( Sepuluh )');
+INSERT INTO `kelas_m` VALUES (2, 'XI ( Sebelas )');
+INSERT INTO `kelas_m` VALUES (3, 'XII ( DuaBelas )');
 
 -- ----------------------------
 -- Table structure for matpel_m
 -- ----------------------------
 DROP TABLE IF EXISTS `matpel_m`;
 CREATE TABLE `matpel_m`  (
-  `id` int NOT NULL,
-  `matapelajaran` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `matapelajaran` int NOT NULL,
+  `nilaikkm` int NOT NULL,
   `objectkelasfk` int NOT NULL,
-  PRIMARY KEY (`id`) USING BTREE,
-  INDEX `matpel_m_objectkelasfk_kelas_m_id`(`objectkelasfk` ASC) USING BTREE,
-  CONSTRAINT `matpel_m_objectkelasfk_kelas_m_id` FOREIGN KEY (`objectkelasfk`) REFERENCES `kelas_m` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+  `objectjenismapel` int NOT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 9 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of matpel_m
 -- ----------------------------
-INSERT INTO `matpel_m` VALUES (1, 'MATEMATIKA', 1);
-INSERT INTO `matpel_m` VALUES (2, 'BAHASA INDONESIA', 1);
+INSERT INTO `matpel_m` VALUES (1, 0, 75, 1, 1);
+INSERT INTO `matpel_m` VALUES (2, 0, 70, 1, 1);
+INSERT INTO `matpel_m` VALUES (3, 0, 70, 1, 2);
+INSERT INTO `matpel_m` VALUES (4, 0, 70, 1, 2);
+INSERT INTO `matpel_m` VALUES (5, 0, 75, 1, 3);
+INSERT INTO `matpel_m` VALUES (6, 0, 75, 1, 3);
+INSERT INTO `matpel_m` VALUES (7, 0, 70, 1, 4);
+INSERT INTO `matpel_m` VALUES (8, 0, 70, 1, 4);
 
 -- ----------------------------
 -- Table structure for semester_m
 -- ----------------------------
 DROP TABLE IF EXISTS `semester_m`;
 CREATE TABLE `semester_m`  (
-  `id` int NOT NULL,
+  `id` bigint NOT NULL AUTO_INCREMENT,
   `semester` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `tahunajaran` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of semester_m
 -- ----------------------------
-INSERT INTO `semester_m` VALUES (1, '1', '2024/2025');
-INSERT INTO `semester_m` VALUES (2, '2', '2024/2025');
+INSERT INTO `semester_m` VALUES (1, '1 ( Ganjil )', '2023/2024');
+INSERT INTO `semester_m` VALUES (2, '2 ( Genap )', '2023/2024');
 
 -- ----------------------------
 -- Table structure for siswa_m
 -- ----------------------------
 DROP TABLE IF EXISTS `siswa_m`;
 CREATE TABLE `siswa_m`  (
-  `id` int NOT NULL,
+  `id` bigint NOT NULL AUTO_INCREMENT,
   `namalengkap` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-  `nisn` int NOT NULL,
+  `nisn` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `objectkelasfk` int NOT NULL,
   `objectjurusanfk` int NOT NULL,
   `objectsemesterfk` int NOT NULL,
   `objectgurufk` int NOT NULL,
-  PRIMARY KEY (`id`) USING BTREE,
-  INDEX `siswa_m_objectkelasfk_kelas_m_id`(`objectkelasfk` ASC) USING BTREE,
-  INDEX `siswa_m_objectjurusanfk_jurusan_m_id`(`objectjurusanfk` ASC) USING BTREE,
-  INDEX `siswa_m_objectsemesterfk_semester_m_id`(`objectsemesterfk` ASC) USING BTREE,
-  INDEX `siswa_m_objectgurufk_guru_m_id`(`objectgurufk` ASC) USING BTREE,
-  CONSTRAINT `siswa_m_objectgurufk_guru_m_id` FOREIGN KEY (`objectgurufk`) REFERENCES `guru_m` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
-  CONSTRAINT `siswa_m_objectjurusanfk_jurusan_m_id` FOREIGN KEY (`objectjurusanfk`) REFERENCES `jurusan_m` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
-  CONSTRAINT `siswa_m_objectkelasfk_kelas_m_id` FOREIGN KEY (`objectkelasfk`) REFERENCES `kelas_m` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
-  CONSTRAINT `siswa_m_objectsemesterfk_semester_m_id` FOREIGN KEY (`objectsemesterfk`) REFERENCES `semester_m` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+  `ttl` date NOT NULL,
+  `jk` int NOT NULL,
+  `agama` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `alamat` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `nohp` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of siswa_m
 -- ----------------------------
-INSERT INTO `siswa_m` VALUES (1, 'SISWA A', 12341234, 1, 1, 1, 1);
-INSERT INTO `siswa_m` VALUES (2, 'SISWA B', 43214321, 2, 2, 1, 1);
+INSERT INTO `siswa_m` VALUES (1, 'Mila Yuliana', '15.16.010.016', 1, 1, 1, 1, '2000-01-16', 0, 'Islam', 'Kp. Sekeawi RT 02 /03', '087644556790');
 
 -- ----------------------------
 -- Table structure for users

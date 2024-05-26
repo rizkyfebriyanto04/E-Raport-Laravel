@@ -31,7 +31,7 @@
 
             <div class="page-heading">
                 <br><span class="text-muted">Dashboard</span>
-                <h3>My Pos App</h3>
+                <h3>E - Raport SMK Al - Amanah</h3>
             </div>
             <div class="page-content">
                 <section class="row">
