@@ -11,7 +11,7 @@
  Target Server Version : 100427 (10.4.27-MariaDB)
  File Encoding         : 65001
 
- Date: 26/05/2024 11:26:55
+ Date: 26/05/2024 11:36:20
 */
 
 SET NAMES utf8mb4;
@@ -25,12 +25,13 @@ CREATE TABLE `guru_m`  (
   `id` bigint NOT NULL AUTO_INCREMENT,
   `namalengkap` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of guru_m
 -- ----------------------------
 INSERT INTO `guru_m` VALUES (1, 'Irma Yunita, S.Kom');
+INSERT INTO `guru_m` VALUES (2, 'Rizal Alam, S.pd');
 
 -- ----------------------------
 -- Table structure for hasilraport_t
@@ -118,24 +119,24 @@ INSERT INTO `kelas_m` VALUES (3, 'XII ( DuaBelas )');
 DROP TABLE IF EXISTS `matpel_m`;
 CREATE TABLE `matpel_m`  (
   `id` bigint NOT NULL AUTO_INCREMENT,
-  `matapelajaran` int NOT NULL,
-  `nilaikkm` int NOT NULL,
+  `matapelajaran` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `nilaikkm` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `objectkelasfk` int NOT NULL,
-  `objectjenismapel` int NOT NULL,
+  `objectjenismapelfk` int NOT NULL,
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 9 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of matpel_m
 -- ----------------------------
-INSERT INTO `matpel_m` VALUES (1, 0, 75, 1, 1);
-INSERT INTO `matpel_m` VALUES (2, 0, 70, 1, 1);
-INSERT INTO `matpel_m` VALUES (3, 0, 70, 1, 2);
-INSERT INTO `matpel_m` VALUES (4, 0, 70, 1, 2);
-INSERT INTO `matpel_m` VALUES (5, 0, 75, 1, 3);
-INSERT INTO `matpel_m` VALUES (6, 0, 75, 1, 3);
-INSERT INTO `matpel_m` VALUES (7, 0, 70, 1, 4);
-INSERT INTO `matpel_m` VALUES (8, 0, 70, 1, 4);
+INSERT INTO `matpel_m` VALUES (1, 'Pendidikan Agama', '75', 1, 1);
+INSERT INTO `matpel_m` VALUES (2, 'Pendidikan Kewarganegaraan', '70', 1, 1);
+INSERT INTO `matpel_m` VALUES (3, 'Bahasa Inggris', '70', 1, 2);
+INSERT INTO `matpel_m` VALUES (4, 'Matematika', '70', 1, 2);
+INSERT INTO `matpel_m` VALUES (5, 'Merakit Personal Komputer', '75', 1, 3);
+INSERT INTO `matpel_m` VALUES (6, 'Melakukan Instalasi Sistem Operasi', '75', 1, 3);
+INSERT INTO `matpel_m` VALUES (7, 'Bahasa Sunda', '70', 1, 4);
+INSERT INTO `matpel_m` VALUES (8, 'Pendidikan Lingkungan Hidup', '70', 1, 4);
 
 -- ----------------------------
 -- Table structure for semester_m
