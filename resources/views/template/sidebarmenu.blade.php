@@ -23,9 +23,6 @@
                     <a href="{{ route('siswa') }}" class="submenu-link">Siswa</a>
                 </li>
                 <li class="submenu-item  ">
-                    <a href="{{ route('semester') }}" class="submenu-link">semester</a>
-                </li>
-                <li class="submenu-item  ">
                     <a href="{{ route('mapel') }}" class="submenu-link">Mata Pelajaran</a>
                 </li>
             </ul>
@@ -33,17 +30,17 @@
         <li
             class="sidebar-item  has-sub">
             <a href="#" class='sidebar-link'>
-                <i class="bi bi-people-fill"></i>
+                <i class="bi bi-book"></i>
                 <span>Pengguna</span>
             </a>
             <ul class="submenu ">
                 <li class="submenu-item  ">
-                    {{-- <a href="{{ route('register') }}" class="submenu-link">Registrasi</a> --}}
+                    <a href="" class="submenu-link">Input Nilai</a>
                 </li>
             </ul>
         </li>
         @endif
-        <li
+        {{-- <li
             class="sidebar-item  has-sub">
             <a href="#" class='sidebar-link'>
                 <i class="bi bi-basket-fill"></i>
@@ -51,7 +48,7 @@
             </a>
             <ul class="submenu ">
                 <li class="submenu-item  ">
-                    {{-- <a href="{{ route('penjualan') }}" class="submenu-link">Penjualan</a> --}}
+                    <a href="{{ route('penjualan') }}" class="submenu-link">Penjualan</a>
                 </li>
             </ul>
         </li>
@@ -63,13 +60,13 @@
             </a>
             <ul class="submenu ">
                 <li class="submenu-item  ">
-                    {{-- <a href="{{ route('laporan') }}" class="submenu-link">Penjualan</a> --}}
+                    <a href="{{ route('laporan') }}" class="submenu-link">Penjualan</a>
                 </li>
-                {{-- <li class="submenu-item  ">
+                <li class="submenu-item  ">
                     <a href="{{ route('penjualan') }}" class="submenu-link">Stok Kadaluarsa</a>
-                </li> --}}
+                </li>
             </ul>
-        </li>
+        </li> --}}
     </ul>
     <br>
     <ul class="menu">

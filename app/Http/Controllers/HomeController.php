@@ -3,15 +3,28 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Kategori;
-use App\Models\Produk;
 use Illuminate\Support\Facades\DB;
 
 class HomeController extends Controller
 {
     public function index(){
         $title = 'E-Raport';
-        return view('home',compact('title'));
+
+        $guru = DB::table('guru_m')->count();
+        $siswa = DB::table('siswa_m')->count();
+        $jurusan = DB::table('jurusan_m')->count();
+
+        $jklakilaki = DB::table('siswa_m')->where('jk', 'Laki - Laki')->count();
+        $jkperempuan = DB::table('siswa_m')->where('jk', 'Perempuan')->count();
+
+        $dataJurusan = DB::table('siswa_m as sm')
+            ->select(DB::raw('COUNT(sm.namalengkap) as jumlah_siswa'), 'jp.bidangjurusan', 'jp.kdjurusan')
+            ->leftJoin('jurusan_m as jp', 'jp.id', '=', 'sm.objectjurusanfk')
+            ->groupBy('jp.bidangjurusan', 'jp.kdjurusan')
+            ->get();
+
+        // return $dataJurusan;
+        return view('home',compact('title','guru','siswa','jurusan','jklakilaki','jkperempuan','dataJurusan'));
         // $title = 'My App Pos';
         // $produk = DB::table('produk_m as pm')
         // ->leftJoin('kategori_m as km', 'km.id','=','pm.kategori_id')

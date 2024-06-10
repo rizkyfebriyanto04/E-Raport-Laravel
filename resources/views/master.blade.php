@@ -10,11 +10,12 @@
     <link rel="stylesheet" href="{{ 'dist/assets/compiled/css/iconly.css'}}">
     <link rel="stylesheet" href="{{ 'dist/assets/extensions/@fortawesome/fontawesome-free/css/all.min.css'}}">
     <link rel="stylesheet" href="{{ 'dist/assets/extensions/flatpickr/flatpickr.min.css'}}">
-
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 
 <body>
-    <script src="assets/static/js/initTheme.js"></script>
+    <script src="{{ 'dist/assets/static/js/initTheme.js'}}"></script>
     <div id="app">
         <div id="sidebar">
             <div class="sidebar-wrapper active">
@@ -28,11 +29,16 @@
                     <i class="bi bi-justify fs-3"></i>
                 </a>
             </header>
-
             <div class="page-heading">
-                <br><span class="text-muted">Dashboard</span>
-                <h3>E - Raport SMK Al - Amanah</h3>
+                <h3>Dashboard | SMK AL AMANAH</h3>
             </div>
+
+            {{-- <div class="card">
+                <div class="card-header">
+                    <h4 class="card-title">SMK AL AMANAH</h4>
+                </div>
+            </div> --}}
+
             <div class="page-content">
                 <section class="row">
                     {{-- @include('template.content') --}}
@@ -40,13 +46,15 @@
                 </section>
             </div>
 
+
+
             <footer>
                 <div class="footer clearfix mb-0 text-muted">
                     <div class="float-start">
                         {{-- <p>2024 &copy; Mazer</p> --}}
                     </div>
                     <div class="float-end">
-                        <p>2024 &copy; Mazer</p>
+                        <p>2024 &copy; Mila</p>
                         {{-- <p>Crafted with <span class="text-danger"><i class="bi bi-heart-fill icon-mid"></i></span>
                             by <a href="https://saugi.me">Saugi</a></p> --}}
                     </div>
@@ -61,6 +69,8 @@
     <script src="{{ 'dist/assets/static/js/pages/dashboard.js'}}"></script>
     <script src="{{ 'dist/assets/extensions/flatpickr/flatpickr.min.js'}}"></script>
     <script src="{{ 'dist/assets/static/js/pages/date-picker.js'}}"></script>
+    <script src="{{ 'dist/assets/static/js/pages/ui-chartjs.js'}}"></script>
+
 </body>
 
 </html>

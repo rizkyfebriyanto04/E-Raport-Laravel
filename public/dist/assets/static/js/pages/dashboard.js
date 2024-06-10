@@ -1,3 +1,14 @@
+var chartColors = {
+    red: "rgb(255, 99, 132)",
+    orange: "rgb(255, 159, 64)",
+    yellow: "rgb(255, 205, 86)",
+    green: "rgb(75, 192, 192)",
+    info: "#41B1F9",
+    blue: "#3245D1",
+    purple: "rgb(153, 102, 255)",
+    grey: "#EBEFF6",
+  }
+
 var optionsProfileVisit = {
   annotations: {
     position: "back",
@@ -16,7 +27,7 @@ var optionsProfileVisit = {
   series: [
     {
       name: "sales",
-      data: <?php echo json_encode($dataPenjualan); ?>
+      data: "test"
     },
   ],
   colors: "#435ebe",
@@ -35,26 +46,6 @@ var optionsProfileVisit = {
       "Nov",
       "Dec",
     ],
-  },
-}
-let optionsVisitorsProfile = {
-  series: [70, 30],
-  labels: ["Male", "Female"],
-  colors: ["#435ebe", "#55c6e8"],
-  chart: {
-    type: "donut",
-    width: "100%",
-    height: "350px",
-  },
-  legend: {
-    position: "bottom",
-  },
-  plotOptions: {
-    pie: {
-      donut: {
-        size: "30%",
-      },
-    },
   },
 }
 
@@ -121,6 +112,63 @@ var optionsEurope = {
   },
 }
 
+
+// var ctxBar = document.getElementById("barChartCanvas").getContext("2d")
+// var myBar = new Chart(ctxBar, {
+//   type: "bar",
+//   data: {
+//     labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul"],
+//     datasets: [
+//       {
+//         label: "Students",
+//         backgroundColor: [
+//           chartColors.grey,
+//           chartColors.grey,
+//           chartColors.grey,
+//           chartColors.grey,
+//           chartColors.info,
+//           chartColors.blue,
+//           chartColors.grey,
+//         ],
+//         data: [5, 10, 30, 40, 35, 55, 15],
+//       },
+//     ],
+//   },
+//   options: {
+//     responsive: true,
+//     barRoundness: 1,
+//     title: {
+//       display: true,
+//       text: "Students in 2020",
+//     },
+//     legend: {
+//       display: false,
+//     },
+//     scales: {
+//       yAxes: [
+//         {
+//           ticks: {
+//             beginAtZero: true,
+//             suggestedMax: 40 + 20,
+//             padding: 10,
+//           },
+//           gridLines: {
+//             drawBorder: false,
+//           },
+//         },
+//       ],
+//       xAxes: [
+//         {
+//           gridLines: {
+//             display: false,
+//             drawBorder: false,
+//           },
+//         },
+//       ],
+//     },
+//   },
+// })
+
 let optionsAmerica = {
   ...optionsEurope,
   colors: ["#008b75"],
@@ -137,10 +185,10 @@ var chartProfileVisit = new ApexCharts(
 
 chartProfileVisit.render();
 
-var chartVisitorsProfile = new ApexCharts(
-  document.getElementById("chart-visitors-profile"),
-  optionsVisitorsProfile
-)
+// var chartVisitorsProfile = new ApexCharts(
+//   document.getElementById("chart-visitors-profile"),
+//   optionsVisitorsProfile
+// )
 var chartEurope = new ApexCharts(
   document.querySelector("#chart-europe"),
   optionsEurope
@@ -158,4 +206,4 @@ chartIndonesia.render()
 chartAmerica.render()
 chartEurope.render()
 chartProfileVisit.render()
-chartVisitorsProfile.render()
+// chartVisitorsProfile.render()
