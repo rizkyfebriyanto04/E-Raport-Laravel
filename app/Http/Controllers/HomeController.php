@@ -4,75 +4,104 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
+
 
 class HomeController extends Controller
 {
     public function index(){
-        $title = 'E-Raport';
+        if (Auth::user()->role == 'admin') {
 
-        $guru = DB::table('guru_m')->count();
-        $siswa = DB::table('siswa_m')->count();
-        $jurusan = DB::table('jurusan_m')->count();
+            $title = 'E-Raport';
 
-        $jklakilaki = DB::table('siswa_m')->where('jk', 'Laki - Laki')->count();
-        $jkperempuan = DB::table('siswa_m')->where('jk', 'Perempuan')->count();
+            $guru = DB::table('guru_m')->count();
+            $siswa = DB::table('siswa_m')->count();
+            $jurusan = DB::table('jurusan_m')->count();
 
-        $dataJurusan = DB::table('siswa_m as sm')
-            ->select(DB::raw('COUNT(sm.namalengkap) as jumlah_siswa'), 'jp.bidangjurusan', 'jp.kdjurusan')
-            ->leftJoin('jurusan_m as jp', 'jp.id', '=', 'sm.objectjurusanfk')
-            ->groupBy('jp.bidangjurusan', 'jp.kdjurusan')
-            ->get();
+            $jklakilaki = DB::table('siswa_m')->where('jk', 'Laki - Laki')->count();
+            $jkperempuan = DB::table('siswa_m')->where('jk', 'Perempuan')->count();
 
-        // return $dataJurusan;
-        return view('home',compact('title','guru','siswa','jurusan','jklakilaki','jkperempuan','dataJurusan'));
-        // $title = 'My App Pos';
-        // $produk = DB::table('produk_m as pm')
-        // ->leftJoin('kategori_m as km', 'km.id','=','pm.kategori_id')
-        // ->select('km.*','pm.*','pm.id as pmid')
-        // ->where('pm.statusenabled', 1)
-        // ->where('km.statusenabled', 1)
-        // ->count();
+            $dataJurusan = DB::table('siswa_m as sm')
+                ->select(DB::raw('COUNT(sm.namalengkap) as jumlah_siswa'), 'jp.bidangjurusan', 'jp.kdjurusan')
+                ->leftJoin('jurusan_m as jp', 'jp.id', '=', 'sm.objectjurusanfk')
+                ->groupBy('jp.bidangjurusan', 'jp.kdjurusan')
+                ->get();
 
-        // $kategori = DB::table('kategori_m as km')
-        // ->select('km.*')
-        // ->where('km.statusenabled', 1)
-        // ->count();
+            // return $dataJurusan;
+            return view('home',compact('title','guru','siswa','jurusan','jklakilaki','jkperempuan','dataJurusan'));
 
-        // $totalProduk = DB::table('produk_m as pm')
-        // ->leftJoin('kategori_m as km', 'km.id','=','pm.kategori_id')
-        // ->where('pm.statusenabled', 1)
-        // ->where('km.statusenabled', 1)
-        // ->count();
+        }else if (Auth::user()->role == 'siswa') {
+            $title = 'E-Raport';
 
-        // $sisastok = DB::table('produk_m as pm')
-        //     ->leftJoin('kategori_m as km', 'km.id','=','pm.kategori_id')
-        //     ->select(DB::raw('SUM(pm.stok) as total_stok'))
-        //     ->where('pm.statusenabled', 1)
-        //     ->where('km.statusenabled', 1)
-        //     ->first()->total_stok;
+            $guru = DB::table('guru_m')->count();
+            $siswa = DB::table('siswa_m')->count();
+            $jurusan = DB::table('jurusan_m')->count();
 
-        // $penjualan2 = DB::table('penjualan_t as pj')
-        //     ->leftJoin('produk_m as pm', 'pm.id','=','pj.objectprodukfk')
-        //     ->leftJoin('kategori_m as km', 'km.id','=','pm.kategori_id')
-        //     ->select('km.*','pm.*','pm.id as pmid','pj.*')
-        //     ->where('pj.statusenabled', 1)
-        //     ->count();
+            $jklakilaki = DB::table('siswa_m')->where('jk', 'Laki - Laki')->count();
+            $jkperempuan = DB::table('siswa_m')->where('jk', 'Perempuan')->count();
 
-        // $penjualan = DB::table('penjualan_t as pj')
-        //     ->leftJoin('produk_m as pm', 'pm.id','=','pj.objectprodukfk')
-        //     ->leftJoin('kategori_m as km', 'km.id','=','pm.kategori_id')
-        //     ->select(DB::raw('MONTH(pj.tanggal_jual) as bulan'), DB::raw('COUNT(pj.id) as total_penjualan'))
-        //     ->where('pj.statusenabled', 1)
-        //     ->groupBy(DB::raw('MONTH(pj.tanggal_jual)'))
-        //     ->get();
-        //     // return $penjualan;
+            $dataJurusan = DB::table('siswa_m as sm')
+                ->select(DB::raw('COUNT(sm.namalengkap) as jumlah_siswa'), 'jp.bidangjurusan', 'jp.kdjurusan')
+                ->leftJoin('jurusan_m as jp', 'jp.id', '=', 'sm.objectjurusanfk')
+                ->groupBy('jp.bidangjurusan', 'jp.kdjurusan')
+                ->get();
 
-        // $dataPenjualan = [];
-        // foreach ($penjualan as $penjualanPerBulan) {
-        //     $dataPenjualan[] = $penjualanPerBulan->total_penjualan;
-        // }
-        // $optionsProfileVisit['series'][0]['data'] = $dataPenjualan;
+                $grades = DB::table('siswa_m as sm')
+                ->leftJoin('hasilraport_t as hr', 'hr.objectsiswafk', '=', 'sm.id')
+                ->leftJoin('matpel_m as mp', 'mp.id', '=', 'hr.objectmatpelfk')
+                ->leftJoin('semester_m as sms', 'sms.id', '=', 'hr.objectsemesterfk')
+                ->where('sm.id', Auth::user()->id)
+                ->select('mp.matapelajaran', 'hr.nilai', 'sms.semester', 'sms.tahunajaran')
+                ->get();
 
-        // return view('home',compact('title','produk','penjualan2','kategori','sisastok','dataPenjualan'));
+            // Process the data to calculate averages
+            $semesterData = [];
+
+            foreach ($grades as $grade) {
+                $yearSemester = $grade->tahunajaran . ' - Semester ' . ($grade->semester == 1 ? 'Ganjil' : 'Genap');
+                $semesterData[$yearSemester][] = $grade->nilai;
+            }
+
+            $averageGrades = [];
+
+            foreach ($semesterData as $yearSemester => $grades) {
+                $averageGrades[$yearSemester] = array_sum($grades) / count($grades);
+            }
+
+
+            $grades = DB::table('siswa_m as sm')
+                ->leftJoin('hasilraport_t as hr', 'hr.objectsiswafk', '=', 'sm.id')
+                ->leftJoin('matpel_m as mp', 'mp.id', '=', 'hr.objectmatpelfk')
+                ->leftJoin('semester_m as sms', 'sms.id', '=', 'hr.objectsemesterfk')
+                ->where('sm.id', Auth::user()->id)
+                ->select('mp.matapelajaran', 'hr.nilai')
+                ->get();
+
+            // Calculate the total or average score for each subject
+            $subjectScores = [];
+            $subjectCounts = [];
+
+            foreach ($grades as $grade) {
+                if (isset($subjectScores[$grade->matapelajaran])) {
+                    $subjectScores[$grade->matapelajaran] += $grade->nilai;
+                    $subjectCounts[$grade->matapelajaran]++;
+                } else {
+                    $subjectScores[$grade->matapelajaran] = $grade->nilai;
+                    $subjectCounts[$grade->matapelajaran] = 1;
+                }
+            }
+
+            foreach ($subjectScores as $subject => $totalScore) {
+                $subjectScores[$subject] = $totalScore / $subjectCounts[$subject]; // Calculate average
+            }
+            // return $averageGrades;
+            return view('siswahome',compact('title','guru','siswa','jurusan','jklakilaki','jkperempuan','dataJurusan','averageGrades','subjectScores'));
+
+        }else if (Auth::user()->role == 'ortusiswa') {
+
+        }else{
+            return redirect ('login');
+        }
+
     }
 }

@@ -80,30 +80,6 @@
         </div>
     </div>
 
-    {{-- @if(Auth::user()->role == 'admin')
-        <div class="row">
-            <div class="col-12">
-                <div class="card">
-                    <div class="card-header">
-                        <h4>Trend Penjualan</h4>
-                    </div>
-                    <div class="card-body">
-                        <div id="chart-profile-visit"></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    @else
-        <p>&nbsp;</p>
-    @endif --}}
-    {{-- <h4>
-        Selamat Datang
-        <b>{{ Auth::user()->name }}</b>,
-        Anda Login sebagai
-        <b>{{ Auth::user()->role }}</b>
-    </h4> --}}
-
-
     <script>
         document.addEventListener("DOMContentLoaded", function() {
             // Data dari controller
