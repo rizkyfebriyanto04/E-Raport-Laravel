@@ -19,5 +19,9 @@ class Siswa extends Model
         'agama',
         'alamat',
         'nohp',
+        'objectkelasfk',
+        'objectsemesterfk',
+        'objectjurusanfk',
+        'objectgurufk',
     ];
 }

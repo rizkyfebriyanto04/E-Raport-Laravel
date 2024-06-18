@@ -32,4 +32,30 @@ class GuruController extends Controller
 
         return redirect()->route('guru')->with('success', 'Data Berhasil Di Tambahkan');
     }
+
+    public function editguru($id)
+    {
+        $guru = Guru::find($id);
+        return view('guru.edit', compact('guru'));
+    }
+
+    public function updateguru(Request $request, $id)
+    {
+        $request->validate([
+            'namalengkap' => 'required',
+        ]);
+
+        $guru = Guru::find($id);
+        $guru->namalengkap = $request->namalengkap;
+        $guru->save();
+
+        return redirect()->route('guru')->with('success', 'Data Berhasil Diubah');
+    }
+
+    public function hapusguru($id){
+        $guru = Guru::find($id);
+        $guru->delete();
+
+        return redirect()->route('guru')->with('success', 'Data Berhasil Dihapus');
+    }
 }

@@ -35,6 +35,23 @@ Route::middleware(['auth'])->group(function () {
 Route::get('guru', [GuruController::class, 'guru'])->name('guru');
 Route::post('guru', [GuruController::class, 'guru_aksi'])->name('guru.action');
 Route::post('delete-guru/{id}', [GuruController::class, 'hapusguru'])->name('guru.hapusguru');
+Route::get('guru/edit/{id}', [GuruController::class, 'editguru'])->name('guru.editguru');
+Route::post('guru/update/{id}', [GuruController::class, 'updateguru'])->name('guru.updateguru');
+
+// Siswa
+Route::get('siswa', [SiswaController::class, 'siswa'])->name('siswa');
+Route::post('siswa', [SiswaController::class, 'siswa_aksi'])->name('siswa.action');
+Route::post('delete-siswa/{id}', [SiswaController::class, 'hapussiswa'])->name('siswa.hapussiswa');
+Route::post('siswa/update/{id}', [SiswaController::class, 'updatesiswa'])->name('siswa.updatesiswa');
+
+// Mata Pelajaran
+Route::get('mapel', [MapelController::class, 'mapel'])->name('mapel');
+Route::post('mapel', [MapelController::class, 'mapel_aksi'])->name('mapel.action');
+Route::post('delete-mapel/{id}', [MapelController::class, 'hapusmapel'])->name('mapel.hapusmapel');
+Route::post('mapel/update/{id}', [MapelController::class, 'updatemapel'])->name('mapel.updatemapel');
+
+// Route::post('guru', [SemesterController::class, 'guru_aksi'])->name('guru.action');
+// Route::post('delete-guru/{id}', [SemesterController::class, 'hapusguru'])->name('guru.hapusguru');
 
 // semester
 Route::get('semester', [SemesterController::class, 'semester'])->name('semester');
@@ -51,12 +68,8 @@ Route::get('hasil', [HasilController::class, 'hasil'])->name('hasil');
 // Route::post('guru', [SemesterController::class, 'guru_aksi'])->name('guru.action');
 // Route::post('delete-guru/{id}', [SemesterController::class, 'hapusguru'])->name('guru.hapusguru');
 
-// Siswa
-Route::get('siswa', [SiswaController::class, 'siswa'])->name('siswa');
-// Route::post('guru', [SemesterController::class, 'guru_aksi'])->name('guru.action');
+
+
+
 // Route::post('delete-guru/{id}', [SemesterController::class, 'hapusguru'])->name('guru.hapusguru');
 
-// Siswa
-Route::get('mapel', [MapelController::class, 'mapel'])->name('mapel');
-// Route::post('guru', [SemesterController::class, 'guru_aksi'])->name('guru.action');
-// Route::post('delete-guru/{id}', [SemesterController::class, 'hapusguru'])->name('guru.hapusguru');

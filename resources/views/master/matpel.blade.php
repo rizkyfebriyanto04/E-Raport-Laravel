@@ -11,7 +11,7 @@
                 <br><br>
                 <div class="card">
                     <div class="card-header">
-                        <h4 class="card-title">Data Master Guru</h4>
+                        <h4 class="card-title">Data Master Mata Pelajaran</h4>
                         @if (session('success'))
                             <div class="alert alert-success" id="success-alert">
                                 {{ session('success') }}
@@ -23,7 +23,10 @@
                             <table class="table mb-0">
                                 <tr>
                                     <th>No</th>
-                                    <th>Nama guru</th>
+                                    <th>Nama Pelajaran</th>
+                                    <th>Nilai KKM</th>
+                                    <th>Kelas</th>
+                                    <th>Jenis Mata Pelajaran</th>
                                     <th>Aksi</th>
                                     {{-- <th>Nama Produk</th>
                                     <th>Harga</th>
@@ -36,7 +39,10 @@
                                 @foreach ($data as $d)
                                 <tr>
                                     <td>{{ $no++ }}</td>
-                                    <td>{{ $d->namalengkap }}</td>
+                                    <td>{{ $d->matapelajaran }}</td>
+                                    <td>{{ $d->nilaikkm }}</td>
+                                    <td>{{ $d->kelas }}</td>
+                                    <td>{{ $d->jenismatpel }}</td>
                                     <td>
                                         <form id="delete-form-{{ $d->id }}" action="{{ route('guru.hapusguru', $d->id) }}" method="POST" style="display: inline;">
                                             @csrf
@@ -77,18 +83,31 @@
                 <form action="{{ route('guru.action') }}" method="POST">
                     @csrf
                     <div class="modal-body">
-                        {{-- <label for="kategori">Kategori Produk <span class="text-danger">*</span></label>
+                        <label for="NameLengkap">Mata Pelajaran</label>
                         <div class="form-group">
-                            <select class="form-control" id="kategori" name="position_id">
+                            <input class="form-control" id="NameLengkap" type="text" name="matapelajaran" placeholder="Mata Pelajaran"/>
+                        </div>
+                        <label for="nisn">Nilai KKM</label>
+                        <div class="form-group">
+                            <input class="form-control" id="nisn" type="text" name="nisn" placeholder="Nilai KKM"/>
+                        </div>
+                        <label for="kls">Kelas</label>
+                        <div class="form-group">
+                            <select class="form-control" id="kls" name="kelas">
                                 <option value="" selected>-- Pilih --</option>
-                                @foreach ($kategori as $k)
-                                   <option value="{{ $k->id }}">{{ $k->namakategori }}</option>
+                                @foreach ($kelas as $k)
+                                    <option value="{{ $k->id }}">{{ $k->kelas }}</option>
                                 @endforeach
-                             </select>
-                        </div> --}}
-                        <label for="NameLengkap">Nama Lengkap</label>
+                            </select>
+                        </div>
+                        <label for="jrs">Jenis Mata Pelajaran</label>
                         <div class="form-group">
-                            <input class="form-control" id="NameLengkap" type="text" name="namalengkap" placeholder="Nama Lengkap"/>
+                            <select class="form-control" id="jrs" name="jurusan">
+                                <option value="" selected>-- Pilih --</option>
+                                @foreach ($jenismapel as $k)
+                                    <option value="{{ $k->id }}">{{ $k->jenismatpel }} </option>
+                                @endforeach
+                            </select>
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -116,13 +135,45 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form action="{{ route('guru.updateguru', $d->id) }}" method="POST">
+                <form action="{{ route('mapel.updatemapel', $d->id) }}" method="POST">
                     @csrf
                     <div class="modal-body">
-                        <div class="form-group">
-                            <label for="NameLengkap">Nama Lengkap</label>
-                            <input type="text" class="form-control" id="NameLengkap" name="namalengkap" value="{{ $d->namalengkap }}" required>
-                        </div>
+                        {{-- <div class="form-group"> --}}
+                            <label for="NameLengkap">Mata Pelajaran</label>
+                            <input type="text" class="form-control" id="NameLengkap" name="matapelajaran" value="{{ $d->matapelajaran }}" >
+                        {{-- </div> --}}
+                    </div>
+                    <div class="modal-body">
+                        {{-- <div class="form-group"> --}}
+                            <label for="NameLengkap">Nilai KKM</label>
+                            <input type="text" class="form-control" id="NameLengkap" name="nilaikkm" value="{{ $d->nilaikkm }}" >
+                        {{-- </div> --}}
+                    </div>
+                    <div class="modal-body">
+                        {{-- <div class="form-group"> --}}
+                            <label for="kelas{{ $d->id }}">Kelas</label>
+                            <select class="form-control" id="kelas{{ $d->id }}" name="kelas" >
+                                <option value="" selected>-- Pilih --</option>
+                                @foreach ($kelas as $k)
+                                    <option value="{{ $k->id }}" {{ $d->objectkelasfk == $k->id ? 'selected' : '' }}>
+                                        {{ $k->kelas }}
+                                    </option>
+                                @endforeach
+                            </select>
+                        {{-- </div> --}}
+                    </div>
+                    <div class="modal-body">
+                        {{-- <div class="form-group"> --}}
+                            <label for="kelas{{ $d->id }}">Jenis Mata Pelajaran</label>
+                            <select class="form-control" id="kelas{{ $d->id }}" name="mapel" >
+                                <option value="" selected>-- Pilih --</option>
+                                @foreach ($jenismapel as $k)
+                                    <option value="{{ $k->id }}" {{ $d->objectjenismapelfk == $k->id ? 'selected' : '' }}>
+                                        {{ $k->jenismatpel }}
+                                    </option>
+                                @endforeach
+                            </select>
+                        {{-- </div> --}}
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>

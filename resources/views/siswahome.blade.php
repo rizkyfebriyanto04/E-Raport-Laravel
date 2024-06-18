@@ -54,7 +54,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 categories: @json(array_keys($averageGrades))
             },
             title: {
-                text: 'Average Grades Per Semester',
+                text: '',
                 align: 'left'
             }
         }
