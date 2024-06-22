@@ -20,56 +20,60 @@
                     </div>
                     <div class="card-content">
                         <div class="table-responsive">
-                            <table class="table mb-0">
-                                <tr>
-                                    <th>No</th>
-                                    <th>Nama Siswa</th>
-                                    <th>NISN</th>
-                                    <th>Tanggal Lahir</th>
-                                    <th>Jenis Kelamin</th>
-                                    {{-- <th>Kelas</th>
-                                    <th>Jurusan</th>
-                                    <th>Semester</th>
-                                    <th>Wali Kelas</th> --}}
-                                    <th>Agama</th>
-                                    <th>Alamat</th>
-                                    <th>No Hp</th>
-                                    <th>Aksi</th>
-                                </tr>
-                                @php
+                            <table class="table table-striped" id="table1">
+                                <thead>
+                                    <tr>
+                                        <th>No</th>
+                                        <th>Nama Siswa</th>
+                                        <th>NISN</th>
+                                        <th>Tanggal Lahir</th>
+                                        <th>Jenis Kelamin</th>
+                                        {{-- <th>Kelas</th>
+                                        <th>Jurusan</th>
+                                        <th>Semester</th>
+                                        <th>Wali Kelas</th> --}}
+                                        <th>Agama</th>
+                                        <th>Alamat</th>
+                                        <th>No Hp</th>
+                                        <th>Aksi</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @php
                                     $no = 1
-                                @endphp
-                                @foreach ($data as $d)
-                                <tr>
-                                    <td>{{ $no++ }}</td>
-                                    <td>{{ $d->namalengkap }}</td>
-                                    <td>{{ $d->nisn }}</td>
-                                    <td>{{ $d->ttl }}</td>
-                                    <td>{{ $d->jk }}</td>
-                                    {{-- <td>{{ $d->kelas }}</td>
-                                    <td>{{ $d->jurusan }}</td>
-                                    <td>{{ $d->semester }}</td>
-                                    <td>{{ $d->namaguru }}</td> --}}
-                                    <td>{{ $d->agama }}</td>
-                                    <td>{{ $d->alamat }}</td>
-                                    <td>{{ $d->nohp }}</td>
-                                    <td>
-                                        <form id="delete-form-{{ $d->id }}" action="{{ route('siswa.hapussiswa', $d->id) }}" method="POST" style="display: inline;">
-                                            @csrf
-                                            @method('POST')
-                                            {{-- <button type="submit" onclick="return confirm('Apakah Anda yakin ingin menghapus data?');" style="border: none; background-color: transparent;">
-                                                <i class="badge-circle badge-circle-light-secondary font-medium-1" data-feather="trash"></i>
-                                            </button> --}}
-                                            <button type="submit" onclick="return confirm('Apakah Anda yakin ingin menghapus data?');" class="btn btn-primary">
-                                                Hapus
-                                            </button>
-                                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editModal{{ $d->id }}">
-                                                Edit
-                                            </button>
-                                        </form>
-                                    </td>
-                                </tr>
-                                @endforeach
+                                    @endphp
+                                    @foreach ($data as $d)
+                                    <tr>
+                                        <td>{{ $no++ }}</td>
+                                        <td>{{ $d->namalengkap }}</td>
+                                        <td>{{ $d->nisn }}</td>
+                                        <td>{{ $d->ttl }}</td>
+                                        <td>{{ $d->jk }}</td>
+                                        {{-- <td>{{ $d->kelas }}</td>
+                                        <td>{{ $d->jurusan }}</td>
+                                        <td>{{ $d->semester }}</td>
+                                        <td>{{ $d->namaguru }}</td> --}}
+                                        <td>{{ $d->agama }}</td>
+                                        <td>{{ $d->alamat }}</td>
+                                        <td>{{ $d->nohp }}</td>
+                                        <td>
+                                            <form id="delete-form-{{ $d->id }}" action="{{ route('siswa.hapussiswa', $d->id) }}" method="POST" style="display: inline;">
+                                                @csrf
+                                                @method('POST')
+                                                {{-- <button type="submit" onclick="return confirm('Apakah Anda yakin ingin menghapus data?');" style="border: none; background-color: transparent;">
+                                                    <i class="badge-circle badge-circle-light-secondary font-medium-1" data-feather="trash"></i>
+                                                </button> --}}
+                                                <button type="submit" onclick="return confirm('Apakah Anda yakin ingin menghapus data?');" class="btn btn-primary">
+                                                    Hapus
+                                                </button>
+                                                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editModal{{ $d->id }}">
+                                                    Edit
+                                                </button>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                    @endforeach
+                                </tbody>
                             </table>
                         </div>
                     </div>

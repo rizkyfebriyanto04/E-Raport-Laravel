@@ -9,6 +9,7 @@ use App\Http\Controllers\JurusanController;
 use App\Http\Controllers\HasilController;
 use App\Http\Controllers\SiswaController;
 use App\Http\Controllers\MapelController;
+use App\Http\Controllers\UserController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -49,6 +50,10 @@ Route::get('mapel', [MapelController::class, 'mapel'])->name('mapel');
 Route::post('mapel', [MapelController::class, 'mapel_aksi'])->name('mapel.action');
 Route::post('delete-mapel/{id}', [MapelController::class, 'hapusmapel'])->name('mapel.hapusmapel');
 Route::post('mapel/update/{id}', [MapelController::class, 'updatemapel'])->name('mapel.updatemapel');
+
+Route::get('registrasi', [UserController::class, 'registrasi'])->name('registrasi');
+Route::post('registrasi', [UserController::class, 'registrasi_aksi'])->name('registrasi.action');
+
 
 // Route::post('guru', [SemesterController::class, 'guru_aksi'])->name('guru.action');
 // Route::post('delete-guru/{id}', [SemesterController::class, 'hapusguru'])->name('guru.hapusguru');

@@ -11,7 +11,7 @@
                 <br><br>
                 <div class="card">
                     <div class="card-header">
-                        <h4 class="card-title">Data Master Guru</h4>
+                        <h4 class="card-title">Daftar Akun</h4>
                         @if (session('success'))
                             <div class="alert alert-success" id="success-alert">
                                 {{ session('success') }}
@@ -24,7 +24,9 @@
                                 <thead>
                                     <tr>
                                         <th>No</th>
-                                        <th>Nama guru</th>
+                                        <th>Nama </th>
+                                        <th>Email/Username</th>
+                                        <th>Role</th>
                                         <th>Aksi</th>
                                     </tr>
                                 </thead>
@@ -35,14 +37,13 @@
                                     @foreach ($data as $d)
                                     <tr>
                                         <td>{{ $no++ }}</td>
-                                        <td>{{ $d->namalengkap }}</td>
+                                        <td>{{ $d->name }}</td>
+                                        <td>{{ $d->email }}</td>
+                                        <td>{{ $d->role }}</td>
                                         <td>
                                             <form id="delete-form-{{ $d->id }}" action="{{ route('guru.hapusguru', $d->id) }}" method="POST" style="display: inline;">
                                                 @csrf
                                                 @method('POST')
-                                                {{-- <button type="submit" onclick="return confirm('Apakah Anda yakin ingin menghapus data?');" style="border: none; background-color: transparent;">
-                                                    <i class="badge-circle badge-circle-light-secondary font-medium-1" data-feather="trash"></i>
-                                                </button> --}}
                                                 <button type="submit" onclick="return confirm('Apakah Anda yakin ingin menghapus data?');" class="btn btn-primary">
                                                     Hapus
                                                 </button>
@@ -68,28 +69,83 @@
             role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h4 class="modal-title" id="myModalLabel33"> Tambah Data Guru</h4>
+                    <h4 class="modal-title" id="myModalLabel33"> Tambah Data Akun</h4>
                     <button type="button" class="close" data-bs-dismiss="modal"
                         aria-label="Close">
                         <i data-feather="x"></i>
                     </button>
                 </div>
-                <form action="{{ route('guru.action') }}" method="POST">
+                <form action="{{ route('registrasi.action') }}" method="POST">
                     @csrf
                     <div class="modal-body">
+                        <label for="NameLengkap">Nama Lengkap</label>
+                        <div class="form-group">
+                            <input class="form-control" id="NameLengkap" type="text" name="namalengkap" placeholder="Nama Lengkap"/>
+                        </div>
+                        <label for="email">Email</label>
+                        <div class="form-group">
+                            <input class="form-control" id="email" type="email" name="email" placeholder="Email"/>
+                        </div>
+                        <label for="role">Role</label>
+                        <fieldset class="form-group">
+                            <select class="form-select" id="basicSelect" name="role">
+                                <option selected>-- Pilih --</option>
+                                <option value="siswa">Siswa</option>
+                                <option value="guru">Guru</option>
+                                <option value="orangtua">Orangtua</option>
+                            </select>
+                        </fieldset>
+
+                        <label for="password">Password</label>
+                        <div class="form-group">
+                            <input type="password" id="password-horizontal" class="form-control" name="password" placeholder="Password">
+                        </div>
+
+                        <div id="additional-combobox1" style="display: none;">
+                            <label for="objectsiswafk">Siswa</label>
+                            <fieldset class="form-group">
+                                <select class="form-select" id="additionalSelect1" name="objectsiswafk">
+                                    <option selected>-- Pilih --</option>
+                                    <option value="siswa1">Siswa 1</option>
+                                    <option value="siswa2">Siswa 2</option>
+                                    <option value="siswa3">Siswa 3</option>
+                                </select>
+                            </fieldset>
+                        </div>
+
+                        <div id="additional-combobox2" style="display: none;">
+                            <label for="objectorangtuafk">Orangtua</label>
+                            <fieldset class="form-group">
+                                <select class="form-select" id="additionalSelect2" name="objectorangtuafk">
+                                    <option selected>-- Pilih --</option>
+                                    <option value="orangtua1">Orangtua 1</option>
+                                    <option value="orangtua2">Orangtua 2</option>
+                                    <option value="orangtua3">Orangtua 3</option>
+                                </select>
+                            </fieldset>
+                        </div>
+
+                        <div id="additional-combobox3" style="display: none;">
+                            <label for="objectgurufk">Guru</label>
+                            <fieldset class="form-group">
+                                <select class="form-select" id="additionalSelect3" name="objectgurufk">
+                                    <option selected>-- Pilih --</option>
+                                    <option value="guru1">Guru 1</option>
+                                    <option value="guru2">Guru 2</option>
+                                    <option value="guru3">Guru 3</option>
+                                </select>
+                            </fieldset>
+                        </div>
                         {{-- <label for="kategori">Kategori Produk <span class="text-danger">*</span></label>
                         <div class="form-group">
                             <select class="form-control" id="kategori" name="position_id">
                                 <option value="" selected>-- Pilih --</option>
                                 @foreach ($kategori as $k)
-                                   <option value="{{ $k->id }}">{{ $k->namakategori }}</option>
+                                <option value="{{ $k->id }}">{{ $k->namakategori }}</option>
                                 @endforeach
-                             </select>
+                            </select>
                         </div> --}}
-                        <label for="NameLengkap">Nama Lengkap</label>
-                        <div class="form-group">
-                            <input class="form-control" id="NameLengkap" type="text" name="namalengkap" placeholder="Nama Lengkap"/>
-                        </div>
+
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-light-secondary"
@@ -121,7 +177,7 @@
                     <div class="modal-body">
                         <div class="form-group">
                             <label for="NameLengkap">Nama Lengkap</label>
-                            <input type="text" class="form-control" id="NameLengkap" name="namalengkap" value="{{ $d->namalengkap }}" required>
+                            {{-- <input type="text" class="form-control" id="NameLengkap" name="namalengkap" value="{{ $d->namalengkap }}" required> --}}
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -133,12 +189,35 @@
         </div>
     </div>
     </section>
-
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script>
         var alertBox = document.getElementById('success-alert');
 
         setTimeout(function() {
             alertBox.style.display = 'none';
         }, 3000);
+
+        $(document).ready(function() {
+            $('#basicSelect').change(function() {
+                if ($(this).val() === 'siswa') {
+                    $('#additional-combobox1').show();
+                } else {
+                    $('#additional-combobox1').hide();
+                }
+
+                if ($(this).val() === 'orangtua') {
+                    $('#additional-combobox2').show();
+                } else {
+                    $('#additional-combobox2').hide();
+                }
+
+                if ($(this).val() === 'guru') {
+                    $('#additional-combobox3').show();
+                } else {
+                    $('#additional-combobox3').hide();
+                }
+            });
+        });
     </script>
 @endsection
+

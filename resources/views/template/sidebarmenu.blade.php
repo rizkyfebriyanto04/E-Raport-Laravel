@@ -27,17 +27,37 @@
                 </li>
             </ul>
         </li>
-        <li
-            class="sidebar-item  has-sub">
+        <li class="sidebar-item  has-sub">
             <a href="#" class='sidebar-link'>
-                <i class="bi bi-book"></i>
+                <i class="fa fa-address-card"></i>
                 <span>Pengguna</span>
             </a>
             <ul class="submenu ">
                 <li class="submenu-item  ">
-                    <a href="" class="submenu-link">Input Nilai</a>
+                    <a href="{{ route('registrasi') }}" class="submenu-link">Daftar Akun</a>
                 </li>
             </ul>
+        </li>
+        <li class="sidebar-item  has-sub">
+            <a href="#" class='sidebar-link'>
+                <i class="fa fa-address-card"></i>
+                <span>Inputan</span>
+            </a>
+            <ul class="submenu ">
+                <li class="submenu-item  ">
+                    <a href="" class="submenu-link">Kehadiran</a>
+                </li>
+                <li class="submenu-item  ">
+                    <a href="" class="submenu-link">Nilai</a>
+                </li>
+            </ul>
+        </li>
+        <li
+            class="sidebar-item ">
+            <a href="{{ route('home')}}" class='sidebar-link'>
+                <i class="fa fa-print"></i>
+                <span>Raport</span>
+            </a>
         </li>
         @endif
         {{-- <li

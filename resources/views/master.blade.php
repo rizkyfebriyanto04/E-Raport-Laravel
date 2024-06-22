@@ -12,6 +12,9 @@
     <link rel="stylesheet" href="{{ 'dist/assets/extensions/flatpickr/flatpickr.min.css'}}">
     <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <link rel="stylesheet" href="{{ 'dist/assets/extensions/simple-datatables/style.css'}}">
+    <link rel="stylesheet" href="{{ 'dist/assets/compiled/css/table-datatable.css'}}">
 </head>
 
 <body>
@@ -70,7 +73,8 @@
     <script src="{{ 'dist/assets/extensions/flatpickr/flatpickr.min.js'}}"></script>
     <script src="{{ 'dist/assets/static/js/pages/date-picker.js'}}"></script>
     <script src="{{ 'dist/assets/static/js/pages/ui-chartjs.js'}}"></script>
-
+    <script src="{{ 'dist/assets/extensions/simple-datatables/umd/simple-datatables.js'}}"></script>
+    <script src="{{ 'dist/assets/static/js/pages/simple-datatables.js'}}"></script>
 </body>
 
 </html>
