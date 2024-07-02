@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Hasil extends Model
+class Penilaian extends Model
 {
     use HasFactory;
     protected $table = 'hasilraport_t';
@@ -16,6 +16,6 @@ class Hasil extends Model
         'objectsiswafk',
         'nilai',
         'ket',
-        'objectsemesterfk'
+        // 'objectsemesterfk'
     ];
 }

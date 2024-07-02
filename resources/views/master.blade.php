@@ -5,16 +5,28 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard - {{ $title }}</title>
-    <link rel="stylesheet" href="{{ 'dist/assets/compiled/css/app.css'}}">
-    <link rel="stylesheet" href="{{ 'dist/assets/compiled/css/app-dark.css'}}">
+    <link rel="stylesheet" href="{{ asset('dist/assets/compiled/css/app.css') }}">
+    <link rel="stylesheet" href="{{ asset('dist/assets/compiled/css/app-dark.css') }}">
+    <link rel="stylesheet" href="{{ asset('dist/assets/compiled/css/iconly.css') }}">
+    <link rel="stylesheet" href="{{ asset('dist/assets/extensions/@fortawesome/fontawesome-free/css/all.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('dist/assets/extensions/flatpickr/flatpickr.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('dist/assets/extensions/choices.js/public/assets/styles/choices.css') }}">
+    <link rel="stylesheet" href="{{ asset('dist/assets/extensions/simple-datatables/style.css') }}">
+    <link rel="stylesheet" href="{{ asset('dist/assets/compiled/css/table-datatable.css') }}">
+
+    {{-- <link rel="stylesheet" href="{{ 'dist/assets/compiled/css/app.css'}}"> --}}
+    {{-- <link rel="stylesheet" href="{{ 'dist/assets/compiled/css/app-dark.css'}}">
     <link rel="stylesheet" href="{{ 'dist/assets/compiled/css/iconly.css'}}">
     <link rel="stylesheet" href="{{ 'dist/assets/extensions/@fortawesome/fontawesome-free/css/all.min.css'}}">
     <link rel="stylesheet" href="{{ 'dist/assets/extensions/flatpickr/flatpickr.min.css'}}">
+
+    <link rel="stylesheet" href="{{ 'dist/assets/extensions/choices.js/public/assets/styles/choices.css'}}">
+    <link rel="stylesheet" href="{{ 'dist/assets/extensions/simple-datatables/style.css'}}">
+    <link rel="stylesheet" href="{{ 'dist/assets/compiled/css/table-datatable.css'}}"> --}}
+
     <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
-    <link rel="stylesheet" href="{{ 'dist/assets/extensions/simple-datatables/style.css'}}">
-    <link rel="stylesheet" href="{{ 'dist/assets/compiled/css/table-datatable.css'}}">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 
 <body>
@@ -65,7 +77,7 @@
             </footer>
         </div>
     </div>
-    <script src="{{ 'dist/assets/static/js/components/dark.js'}}"></script>
+    {{-- <script src="{{ 'dist/assets/static/js/components/dark.js'}}"></script>
     <script src="{{ 'dist/assets/extensions/perfect-scrollbar/perfect-scrollbar.min.js'}}"></script>
     <script src="{{ 'dist/assets/compiled/js/app.js'}}"></script>
     <script src="{{ 'dist/assets/extensions/apexcharts/apexcharts.min.js'}}"></script>
@@ -75,6 +87,22 @@
     <script src="{{ 'dist/assets/static/js/pages/ui-chartjs.js'}}"></script>
     <script src="{{ 'dist/assets/extensions/simple-datatables/umd/simple-datatables.js'}}"></script>
     <script src="{{ 'dist/assets/static/js/pages/simple-datatables.js'}}"></script>
+    <script src="{{ 'dist/assets/extensions/choices.js/public/assets/scripts/choices.js'}}"></script>
+    <script src="{{ 'dist/assets/static/js/pages/form-element-select.js'}}"></script> --}}
+
+    <script src="{{ asset('dist/assets/static/js/components/dark.js') }}"></script>
+    <script src="{{ asset('dist/assets/extensions/perfect-scrollbar/perfect-scrollbar.min.js') }}"></script>
+    <script src="{{ asset('dist/assets/compiled/js/app.js') }}"></script>
+    <script src="{{ asset('dist/assets/extensions/apexcharts/apexcharts.min.js') }}"></script>
+    <script src="{{ asset('dist/assets/static/js/pages/dashboard.js') }}"></script>
+    <script src="{{ asset('dist/assets/extensions/flatpickr/flatpickr.min.js') }}"></script>
+    <script src="{{ asset('dist/assets/static/js/pages/date-picker.js') }}"></script>
+    <script src="{{ asset('dist/assets/static/js/pages/ui-chartjs.js') }}"></script>
+    <script src="{{ asset('dist/assets/extensions/simple-datatables/umd/simple-datatables.js') }}"></script>
+    <script src="{{ asset('dist/assets/static/js/pages/simple-datatables.js') }}"></script>
+    <script src="{{ asset('dist/assets/extensions/choices.js/public/assets/scripts/choices.js') }}"></script>
+    <script src="{{ asset('dist/assets/static/js/pages/form-element-select.js') }}"></script>
+
 </body>
 
 </html>

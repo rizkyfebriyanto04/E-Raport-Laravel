@@ -217,7 +217,14 @@
                                     </div>
                                     <div class="form-group">
                                         <label for="jk{{ $d->id }}">Jenis Kelamin</label>
-                                        <input type="text" class="form-control" id="jk{{ $d->id }}" name="jk" value="{{ $d->jk }}" required>
+                                        {{-- <input type="text" class="form-control" id="jk{{ $d->id }}" name="jk" value="{{ $d->jk }}" required> --}}
+                                        <fieldset class="form-group">
+                                            <select class="form-select" id="basicSelect" name="role">
+                                                <option value="" disabled>-- Pilih --</option>
+                                                <option value="Perempuan" {{ $d->jk == 'Perempuan' ? 'selected' : '' }}>Perempuan</option>
+                                                <option value="Laki - Laki" {{ $d->jk == 'Laki - Laki' ? 'selected' : '' }}>Laki - Laki</option>
+                                            </select>
+                                        </fieldset>
                                     </div>
                                     <div class="form-group">
                                         <label for="kelas{{ $d->id }}">Kelas</label>

@@ -7,7 +7,7 @@
             <div class="card-body px-4 py-4-5">
                 <div class="row">
                     <h5>
-                        Selamat Datang Orang Tua Siswa, di E-Raport SMK AL Amanah
+                        Selamat Datang Orang Tua / Wali <b>{{ $siswa[0]->namalengkap }}</b>, di E-Raport SMK AL Amanah
                     </h5>
                 </div>
             </div>
@@ -23,35 +23,12 @@
             </div>
             <div class="card-body">
                 <div class="accordion" id="cardAccordion">
-                    {{-- <div class="accordion" id="accordionExample">
-                        <div class="accordion-item">
-                            <h2 class="accordion-header" id="headingOne">
-                                <button class="accordion-button" type="button" data-bs-toggle="collapse"
-                                    data-bs-target="#collapseOne" aria-expanded="false"
-                                    aria-controls="collapseOne">
-                                    Mila Yuliana
-                                </button>
-                            </h2>
-                            <div id="collapseOne" class="accordion-collapse collapse show"
-                                aria-labelledby="headingOne" data-bs-parent="#accordionExample">
-                                <div class="accordion-body">
-                                    <strong>This is the first item's accordion body.</strong> It is shown by
-                                    default, until the collapse plugin adds the appropriate classes that we use
-                                    to style each element. These classes control the overall appearance, as well
-                                    as the showing and hiding via CSS transitions. You can modify any of this
-                                    with custom CSS or overriding our default variables. It's also worth noting
-                                    that just about any HTML can go within the <code>.accordion-body</code>,
-                                    though the transition does limit overflow.
-                                </div>
-                            </div>
-                        </div>
-                    </div> --}}
                     <div class="accordion-item">
                         <h2 class="accordion-header" id="headingTwo">
                             <button class="accordion-button collapsed" type="button"
                                 data-bs-toggle="collapse" data-bs-target="#collapseTwo"
                                 aria-expanded="false" aria-controls="collapseTwo">
-                                Mila Yuliana
+                                {{ $siswa[0]->namalengkap }}
                             </button>
                         </h2>
                         <div id="collapseTwo" class="accordion-collapse collapse"
@@ -60,44 +37,44 @@
                                 <div class="row">
                                     <div class="col-md-6 col-12">
                                         <div class="form-group">
-                                            <label for="first-name-column">First Name</label>
+                                            <label for="first-name-column">NIS / NISN</label>
                                             <input type="text" id="first-name-column" class="form-control"
-                                                placeholder="First Name" name="fname-column" disabled>
+                                                value="{{ $siswa[0]->nisn }}" name="fname-column" readonly>
                                         </div>
                                     </div>
                                     <div class="col-md-6 col-12">
                                         <div class="form-group">
-                                            <label for="last-name-column">Last Name</label>
+                                            <label for="last-name-column">Jenis Kelamin</label>
                                             <input type="text" id="last-name-column" class="form-control"
-                                                placeholder="Last Name" name="lname-column">
+                                            value="{{ $siswa[0]->jk }}" name="lname-column" readonly>
                                         </div>
                                     </div>
                                     <div class="col-md-6 col-12">
                                         <div class="form-group">
-                                            <label for="city-column">City</label>
-                                            <input type="text" id="city-column" class="form-control" placeholder="City"
-                                                name="city-column">
+                                            <label for="city-column">Tanggal Lahir</label>
+                                            <input type="text" id="city-column" class="form-control" value="{{ $siswa[0]->ttl }}"
+                                                name="city-column" readonly>
                                         </div>
                                     </div>
                                     <div class="col-md-6 col-12">
                                         <div class="form-group">
-                                            <label for="country-floating">Country</label>
+                                            <label for="country-floating">Alamat</label>
                                             <input type="text" id="country-floating" class="form-control"
-                                                name="country-floating" placeholder="Country">
+                                                name="country-floating" value="{{ $siswa[0]->alamat }}" readonly>
                                         </div>
                                     </div>
                                     <div class="col-md-6 col-12">
                                         <div class="form-group">
-                                            <label for="company-column">Company</label>
+                                            <label for="company-column">Agama</label>
                                             <input type="text" id="company-column" class="form-control"
-                                                name="company-column" placeholder="Company">
+                                                name="company-column" value="{{ $siswa[0]->agama }}" readonly>
                                         </div>
                                     </div>
                                     <div class="col-md-6 col-12">
                                         <div class="form-group">
-                                            <label for="email-id-column">Email</label>
+                                            <label for="email-id-column">Nama Orangtua/Wali</label>
                                             <input type="email" id="email-id-column" class="form-control"
-                                                name="email-id-column" placeholder="Email">
+                                                name="email-id-column" value="{{ Auth::user()->name }}" readonly>
                                         </div>
                                     </div>
                                 </div>
@@ -110,24 +87,7 @@
     </div>
 </div>
 <div class="row">
-    <div class="col-6 col-lg-3 col-md-6">
-        <div class="card">
-            <div class="card-body px-4 py-4-5">
-                <div class="row">
-                    <div class="col-md-4 col-lg-12 col-xl-12 col-xxl-5 d-flex justify-content-start ">
-                        <div class="stats-icon purple mb-2">
-                            <i class="fas fa-user-tie"></i>
-                        </div>
-                    </div>
-                    <div class="col-md-8 col-lg-12 col-xl-12 col-xxl-7">
-                        <h6 class="text-muted font-semibold">Kehadiran</h6>
-                        <h6 class="font-extrabold mb-0">20</h6>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="col-6 col-lg-3 col-md-6">
+    <div class="col-6 col-lg-4 col-md-6">
         <div class="card">
             <div class="card-body px-4 py-4-5">
                 <div class="row">
@@ -138,13 +98,13 @@
                     </div>
                     <div class="col-md-8 col-lg-12 col-xl-12 col-xxl-7">
                         <h6 class="text-muted font-semibold">Sakit</h6>
-                        <h6 class="font-extrabold mb-0">0</h6>
+                        <h6 class="font-extrabold mb-0">{{ $kehadiran[0]->sakit }}</h6>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <div class="col-6 col-lg-3 col-md-6">
+    <div class="col-6 col-lg-4 col-md-6">
         <div class="card">
             <div class="card-body px-4 py-4-5">
                 <div class="row">
@@ -155,13 +115,13 @@
                     </div>
                     <div class="col-md-8 col-lg-12 col-xl-12 col-xxl-7">
                         <h6 class="text-muted font-semibold">Izin</h6>
-                        <h6 class="font-extrabold mb-0">0</h6>
+                        <h6 class="font-extrabold mb-0">{{ $kehadiran[0]->izin }}</h6>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <div class="col-6 col-lg-3 col-md-6">
+    <div class="col-6 col-lg-4 col-md-6">
         <div class="card">
             <div class="card-body px-4 py-4-5">
                 <div class="row">
@@ -171,8 +131,8 @@
                         </div>
                     </div>
                     <div class="col-md-8 col-lg-12 col-xl-12 col-xxl-7">
-                        <h6 class="text-muted font-semibold">Alfa</h6>
-                        <h6 class="font-extrabold mb-0">0</h6>
+                        <h6 class="text-muted font-semibold">Tanpa Kehadiran</h6>
+                        <h6 class="font-extrabold mb-0">{{ $kehadiran[0]->tanpa_keterangan }}</h6>
                     </div>
                 </div>
             </div>

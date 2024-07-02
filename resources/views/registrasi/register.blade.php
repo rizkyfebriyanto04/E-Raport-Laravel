@@ -41,7 +41,7 @@
                                         <td>{{ $d->email }}</td>
                                         <td>{{ $d->role }}</td>
                                         <td>
-                                            <form id="delete-form-{{ $d->id }}" action="{{ route('guru.hapusguru', $d->id) }}" method="POST" style="display: inline;">
+                                            <form id="delete-form-{{ $d->id }}" action="{{ route('registrasi.hapusregistrasi', $d->id) }}" method="POST" style="display: inline;">
                                                 @csrf
                                                 @method('POST')
                                                 <button type="submit" onclick="return confirm('Apakah Anda yakin ingin menghapus data?');" class="btn btn-primary">
@@ -80,7 +80,7 @@
                     <div class="modal-body">
                         <label for="NameLengkap">Nama Lengkap</label>
                         <div class="form-group">
-                            <input class="form-control" id="NameLengkap" type="text" name="namalengkap" placeholder="Nama Lengkap"/>
+                            <input class="form-control" id="NameLengkap" type="text" name="name" placeholder="Nama Lengkap"/>
                         </div>
                         <label for="email">Email</label>
                         <div class="form-group">
@@ -104,16 +104,31 @@
                         <div id="additional-combobox1" style="display: none;">
                             <label for="objectsiswafk">Siswa</label>
                             <fieldset class="form-group">
-                                <select class="form-select" id="additionalSelect1" name="objectsiswafk">
-                                    <option selected>-- Pilih --</option>
-                                    <option value="siswa1">Siswa 1</option>
-                                    <option value="siswa2">Siswa 2</option>
-                                    <option value="siswa3">Siswa 3</option>
+                                <select class="choices form-select" id="additionalSelect1" name="objectsiswafk">
+                                    <option selected>--Pilih--</option>
+                                    @foreach ($siswa as $s)
+                                        <option value="{{ $s->id }}">{{ $s->nisn }} | {{ $s->namalengkap }}</option>
+                                    @endforeach
                                 </select>
                             </fieldset>
+                            {{-- <div class="col-md-6 mb-4">
+                                <h6>Basic Choices</h6>
+                                <p>Use <code>.choices</code> class for basic choices control.</p>
+                                <div class="form-group">
+                                    <select class="choices form-select">
+                                        <option value="square">Square</option>
+                                        <option value="rectangle">Rectangle</option>
+                                        <option value="rombo">Rombo</option>
+                                        <option value="romboid">Romboid</option>
+                                        <option value="trapeze">Trapeze</option>
+                                        <option value="traible">Triangle</option>
+                                        <option value="polygon">Polygon</option>
+                                    </select>
+                                </div>
+                            </div> --}}
                         </div>
 
-                        <div id="additional-combobox2" style="display: none;">
+                        {{-- <div id="additional-combobox2" style="display: none;">
                             <label for="objectorangtuafk">Orangtua</label>
                             <fieldset class="form-group">
                                 <select class="form-select" id="additionalSelect2" name="objectorangtuafk">
@@ -123,16 +138,16 @@
                                     <option value="orangtua3">Orangtua 3</option>
                                 </select>
                             </fieldset>
-                        </div>
+                        </div> --}}
 
                         <div id="additional-combobox3" style="display: none;">
                             <label for="objectgurufk">Guru</label>
                             <fieldset class="form-group">
-                                <select class="form-select" id="additionalSelect3" name="objectgurufk">
-                                    <option selected>-- Pilih --</option>
-                                    <option value="guru1">Guru 1</option>
-                                    <option value="guru2">Guru 2</option>
-                                    <option value="guru3">Guru 3</option>
+                                <select class="choices form-select" id="additionalSelect1" name="objectgurufk">
+                                    <option selected>--Pilih--</option>
+                                    @foreach ($guru as $g)
+                                        <option value="{{ $g->id }}">{{ $g->namalengkap }}</option>
+                                    @endforeach
                                 </select>
                             </fieldset>
                         </div>
@@ -172,14 +187,35 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form action="{{ route('guru.updateguru', $d->id) }}" method="POST">
+                <form action="{{ route('registrasi.updateregistrasi', $d->id) }}" method="POST">
                     @csrf
                     <div class="modal-body">
                         <div class="form-group">
-                            <label for="NameLengkap">Nama Lengkap</label>
-                            {{-- <input type="text" class="form-control" id="NameLengkap" name="namalengkap" value="{{ $d->namalengkap }}" required> --}}
+                            <label for="name">Nama Lengkap</label>
+                            <input type="text" class="form-control" id="NameLengkap" name="name" value="{{ $d->name }}" required>
                         </div>
                     </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label for="Email">Email</label>
+                            <input type="email" class="form-control" id="Email" name="namalengkap" value="{{ $d->email }}" required>
+                        </div>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label for="Email">Role</label>
+                            {{-- <input type="email" class="form-control" id="Email" name="role" value="{{ $d->role }}" required> --}}
+                            <fieldset class="form-group">
+                                <select class="form-select" id="basicSelect" name="role">
+                                    <option value="" disabled>-- Pilih --</option>
+                                    <option value="siswa" {{ $d->role == 'siswa' ? 'selected' : '' }}>Siswa</option>
+                                    <option value="guru" {{ $d->role == 'guru' ? 'selected' : '' }}>Guru</option>
+                                    <option value="orangtua" {{ $d->role == 'orangtua' ? 'selected' : '' }}>Orangtua</option>
+                                </select>
+                            </fieldset>
+                        </div>
+                    </div>
+
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
                         <button type="submit" class="btn btn-primary">Simpan</button>
@@ -199,17 +235,17 @@
 
         $(document).ready(function() {
             $('#basicSelect').change(function() {
-                if ($(this).val() === 'siswa') {
+                if ($(this).val() === 'siswa' || $(this).val() === 'orangtua' ) {
                     $('#additional-combobox1').show();
                 } else {
                     $('#additional-combobox1').hide();
                 }
 
-                if ($(this).val() === 'orangtua') {
-                    $('#additional-combobox2').show();
-                } else {
-                    $('#additional-combobox2').hide();
-                }
+                // if ($(this).val() === 'orangtua') {
+                //     $('#additional-combobox1').show();
+                // } else {
+                //     $('#additional-combobox1').hide();
+                // }
 
                 if ($(this).val() === 'guru') {
                     $('#additional-combobox3').show();

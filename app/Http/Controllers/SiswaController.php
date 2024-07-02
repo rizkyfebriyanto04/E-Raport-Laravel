@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 
 use App\Models\Siswa;
+use App\Models\Hasil;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -31,28 +32,76 @@ class SiswaController extends Controller
 
     public function siswa_aksi(Request $request)
     {
-        $siswa = new Siswa([
-            'namalengkap' => $request->namalengkap,
-            'nisn' => $request->nisn,
-            'objectkelasfk' => $request->kelas,
-            'objectjurusanfk' => $request->jurusan,
-            'objectsemesterfk' => $request->semester,
-            'objectgurufk' => $request->walikelas,
-            'ttl' => $request->tgl,
-            'jk' => $request->jeniskelamin,
-            'alamat' => $request->alamat,
-            'nohp' => $request->nohp,
-            'agama' => 'Islam',
-        ]);
+        DB::beginTransaction();
+        try {
+            $siswa = new Siswa([
+                'namalengkap' => $request->namalengkap,
+                'nisn' => $request->nisn,
+                'objectkelasfk' => $request->kelas,
+                'objectjurusanfk' => $request->jurusan,
+                'objectsemesterfk' => $request->semester,
+                'objectgurufk' => $request->walikelas,
+                'ttl' => $request->tgl,
+                'jk' => $request->jeniskelamin,
+                'alamat' => $request->alamat,
+                'nohp' => $request->nohp,
+                'agama' => 'Islam',
+            ]);
 
-        $siswa->save();
+            $siswa->save();
 
-        return redirect()->route('siswa')->with('success', 'Data Berhasil Di Tambahkan');
+            \Log::info('Siswa baru disimpan dengan id : ' . $siswa->id . 'a/n' . $siswa->namalengkap);
+
+            $matpel = DB::table('matpel_m')
+                ->where('objectkelasfk', $siswa->objectkelasfk)
+                ->where('objectjurusanfk', $siswa->objectjurusanfk)
+                ->get();
+
+            $paketmatpel = [];
+            foreach ($matpel as $m) {
+                $paketmatpel[] = [
+                    'objectmatpelfk' => $m->id,
+                    'objectsiswafk' => $siswa->id,
+                    'objectsemesterfk' => $siswa->objectsemesterfk,
+                    'nilai' => 0,
+                    'ket' => '-',
+                ];
+            }
+
+            Hasil::insert($paketmatpel);
+
+            DB::table('kehadiran_t')
+            ->insert([
+                'objectsiswafk' => $siswa->id,
+                'sakit' => '0',
+                'izin' => '0',
+                'tanpa_keterangan' => '0',
+            ]);
+
+            DB::commit();
+
+            return redirect()->route('siswa')->with('success', 'Data Siswa Berhasil Ditambahkan');
+
+        } catch (\Exception $e) {
+            DB::rollback();
+            \Log::error('Error menambahkan siswa: ' . $e->getMessage());
+
+            return redirect()->route('siswa')->with('error', 'Terjadi kesalahan saat menambahkan siswa');
+        }
     }
 
     public function hapussiswa($id){
         $siswa = Siswa::find($id);
-        $siswa->delete();
+
+        if ($siswa) {
+            DB::table('kehadiran_t')->where('objectsiswafk', $siswa->id)->delete();
+
+            DB::table('hasilraport_t')->where('objectsiswafk', $siswa->id)->delete();
+
+            $siswa->delete();
+
+            return redirect()->route('siswa')->with('success', 'Data Berhasil Dihapus');
+        }
 
         return redirect()->route('siswa')->with('success', 'Data Berhasil Dihapus');
     }

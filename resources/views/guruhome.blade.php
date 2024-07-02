@@ -36,7 +36,7 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header">
-                    <h4>Bar Chart</h4>
+                    <h4>Rata Rata Nilai Siswa </h4>
                 </div>
                 <div class="card-body">
                     <div id="bar"></div>

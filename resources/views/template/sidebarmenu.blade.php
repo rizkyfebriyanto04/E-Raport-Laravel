@@ -40,21 +40,21 @@
         </li>
         <li class="sidebar-item  has-sub">
             <a href="#" class='sidebar-link'>
-                <i class="fa fa-address-card"></i>
-                <span>Inputan</span>
+                <i class="fas fa-pen-square"></i>
+                <span>Input Data</span>
             </a>
             <ul class="submenu ">
                 <li class="submenu-item  ">
-                    <a href="" class="submenu-link">Kehadiran</a>
+                    <a href="{{ route('kehadiran') }}" class="submenu-link">Kehadiran</a>
                 </li>
                 <li class="submenu-item  ">
-                    <a href="" class="submenu-link">Nilai</a>
+                    <a href="{{ route('nilai') }}" class="submenu-link">Nilai</a>
                 </li>
             </ul>
         </li>
         <li
             class="sidebar-item ">
-            <a href="{{ route('home')}}" class='sidebar-link'>
+            <a href="{{ route('digitalraport')}}" class='sidebar-link'>
                 <i class="fa fa-print"></i>
                 <span>Raport</span>
             </a>
@@ -104,8 +104,11 @@
                 <span>{{ Auth::user()->name }}</span>
             </a>
             <ul class="submenu ">
+                {{-- <li class="submenu-item  ">
+                    <a href="{{ route('logoutaksi') }}" class="submenu-link">Ganti Password</a>
+                </li> --}}
                 <li class="submenu-item  ">
-                    <a href="{{ route('logoutaksi') }}" class="submenu-link">Logout</a>
+                    <a href="{{ route('logoutaksi') }}" class="submenu-link" onclick="return confirm('Apakah anda yakin ingin keluar ?')">Logout</a>
                 </li>
             </ul>
         </li>

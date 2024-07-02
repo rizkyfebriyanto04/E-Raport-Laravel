@@ -10,6 +10,7 @@ use App\Http\Controllers\HasilController;
 use App\Http\Controllers\SiswaController;
 use App\Http\Controllers\MapelController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\PenilaianController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -53,6 +54,26 @@ Route::post('mapel/update/{id}', [MapelController::class, 'updatemapel'])->name(
 
 Route::get('registrasi', [UserController::class, 'registrasi'])->name('registrasi');
 Route::post('registrasi', [UserController::class, 'registrasi_aksi'])->name('registrasi.action');
+Route::post('delete-registrasi/{id}', [UserController::class, 'hapusregistrasi'])->name('registrasi.hapusregistrasi');
+Route::post('registrasi/update/{id}', [UserController::class, 'updateregistrasi'])->name('registrasi.updateregistrasi');
+
+Route::get('kehadiran', [PenilaianController::class, 'index'])->name('kehadiran');
+Route::post('kehadiran', [PenilaianController::class, 'kehadiran_aksi'])->name('kehadiran.action');
+Route::post('updateKehadiran', [PenilaianController::class, 'updateKehadiran']);
+
+Route::get('penilaian', [PenilaianController::class, 'penilaian_nilai'])->name('nilai');
+Route::get('penilaiansiswa/{id}', [PenilaianController::class, 'penilaian_aksi']);
+Route::post('penilaiandaftarsiswa', [PenilaianController::class, 'penilaian_update'])->name('penilaian.action');
+
+
+Route::get('raport', [PenilaianController::class, 'digitalraport'])->name('digitalraport');
+Route::get('hasilraport/{id}', [PenilaianController::class, 'hasilpdf'])->name('hasil');
+
+// Route::get('penilaian/', [PenilaianController::class, 'penilaian_nilai'])->name('nilai');
+// Route::get('penilaian/{id}', [PenilaianController::class, 'penilaianmodal'])->name('penilaian');
+
+// Route::post('penilaian', [PenilaianController::class, 'penilaian_aksi'])->name('penilaian.action');
+
 
 
 // Route::post('guru', [SemesterController::class, 'guru_aksi'])->name('guru.action');

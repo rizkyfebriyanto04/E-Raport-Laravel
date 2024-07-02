@@ -51,7 +51,7 @@ class HomeController extends Controller
                 ->leftJoin('matpel_m as mp', 'mp.id', '=', 'hr.objectmatpelfk')
                 ->leftJoin('semester_m as sms', 'sms.id', '=', 'hr.objectsemesterfk')
                 ->leftJoin('kelas_m as km','km.id', '=', 'sm.objectkelasfk')
-                ->where('sm.id', Auth::user()->id)
+                ->where('sm.id', Auth::user()->objectsiswafk)
                 ->select('mp.matapelajaran', 'hr.nilai', 'sms.semester', 'sms.tahunajaran')
                 ->get();
 
@@ -74,7 +74,7 @@ class HomeController extends Controller
                 ->leftJoin('hasilraport_t as hr', 'hr.objectsiswafk', '=', 'sm.id')
                 ->leftJoin('matpel_m as mp', 'mp.id', '=', 'hr.objectmatpelfk')
                 ->leftJoin('semester_m as sms', 'sms.id', '=', 'hr.objectsemesterfk')
-                ->where('sm.id', Auth::user()->id)
+                ->where('sm.id', Auth::user()->objectsiswafk)
                 ->select('mp.matapelajaran', 'hr.nilai')
                 ->get();
 
@@ -101,7 +101,7 @@ class HomeController extends Controller
             $title = 'E-Raport';
 
             $guru = DB::table('guru_m')->count();
-            $siswa = DB::table('siswa_m')->count();
+            $siswa = DB::table('siswa_m')->where('objectgurufk', Auth::user()->objectgurufk)->count();
             $jurusan = DB::table('jurusan_m')->count();
 
             $jklakilaki = DB::table('siswa_m')->where('jk', 'Laki - Laki')->count();
@@ -120,13 +120,14 @@ class HomeController extends Controller
                 ->leftJoin('kelas_m as km','km.id', '=', 'sm.objectkelasfk')
                 ->leftJoin('guru_m as gm','gm.id', '=', 'sm.objectgurufk')
                 ->leftJoin('jenismapel_m as jm','jm.id', '=','mp.objectjenismapelfk')
-                ->where('sm.id', 5)
+                ->where('sm.objectgurufk', Auth::user()->objectgurufk)
                 ->select('mp.matapelajaran',
                             'hr.nilai',
                             'km.kelas',
-                            'gm.namalengkap',
+                            'gm.namalengkap as namaguru',
                             'jm.jenismatpel')
                 ->get();
+            // return $grades;
             $data = [
                 'Normatif' => [],
                 'Adatif' => [],
@@ -150,7 +151,7 @@ class HomeController extends Controller
             $title = 'E-Raport';
 
             $guru = DB::table('guru_m')->count();
-            $siswa = DB::table('siswa_m')->count();
+            $siswa = DB::table('siswa_m')->where('id', Auth::user()->objectsiswafk)->get();
             $jurusan = DB::table('jurusan_m')->count();
 
             $jklakilaki = DB::table('siswa_m')->where('jk', 'Laki - Laki')->count();
@@ -211,7 +212,10 @@ class HomeController extends Controller
             foreach ($subjectScores as $subject => $totalScore) {
                 $subjectScores[$subject] = $totalScore / $subjectCounts[$subject]; // Calculate average
             }
-            return view('orangtuahome',compact('title','guru','siswa','jurusan','jklakilaki','jkperempuan','dataJurusan','averageGrades','subjectScores'));
+
+            $kehadiran = DB::table('kehadiran_t')->where('objectsiswafk', Auth::user()->objectsiswafk)->get();
+            // return $siswa;
+            return view('orangtuahome',compact('title','guru','siswa','jurusan','jklakilaki','jkperempuan','dataJurusan','averageGrades','subjectScores','kehadiran'));
         }else{
             return view('notfound');
         }

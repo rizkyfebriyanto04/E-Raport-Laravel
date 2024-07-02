@@ -16,23 +16,59 @@ class UserController extends Controller
         $title = 'E-Raport';
         $data = DB::table('users')
                 ->get();
+        $siswa = DB::table('siswa_m')
+                ->get();
+        $guru = DB::table('guru_m')
+                ->get();
         // return $data;
-        return view('registrasi.register', compact('title','data'));
+        return view('registrasi.register', compact('title','data','siswa','guru'));
     }
 
     public function registrasi_aksi(Request $request)
     {
-        return $request;
-        // $user = new User([
-        //     'name' => $request->name,
-        //     'email' => $request->email,
-        //     'role' => $request->role,
-        //     'password' => Hash::make($request->password),
-        //     'objectsiswafk' => $request->objectsiswafk,
-        //     'objectgurufk' => $request->objectgurufk,
-        // ]);
-        // $user->save();
+        // return $request;
+
+        $objectsiswafk = $request->objectsiswafk === '-- Pilih --' ? null : $request->objectsiswafk;
+        $objectgurufk = $request->objectgurufk === '-- Pilih --' ? null : $request->objectgurufk;
+
+        $user = new User([
+            'name' => $request->name,
+            'email' => $request->email,
+            'role' => $request->role,
+            'password' => Hash::make($request->password),
+            'objectsiswafk' => $objectsiswafk,
+            'objectgurufk' => $objectgurufk,
+        ]);
+        $user->save();
 
         return redirect()->route('registrasi')->with('success', 'Akun Berhasil Di Tambahkan');
     }
+
+    public function hapusregistrasi($id){
+        $user = User::find($id);
+        $user->delete();
+
+        return redirect()->route('registrasi')->with('success', 'Data Berhasil Dihapus');
+    }
+
+    public function updateregistrasi(Request $request, $id)
+    {
+        // $request->validate([
+        //     'namalengkap' => 'required',
+        // ]);
+
+        // $guru->namalengkap = $request->namalengkap;
+        $guru = User::find($id);
+        $guru->name = $request->name;
+        $guru->email = $request->email;
+        $guru->role = $request->role;
+        $guru->password = Hash::make($request->password);
+        $guru->objectsiswafk = $request->objectsiswafk;
+        $guru->objectgurufk = $request->objectgurufk;
+        $guru->save();
+
+        return redirect()->route('guru')->with('success', 'Data Berhasil Diubah');
+    }
+
+
 }
