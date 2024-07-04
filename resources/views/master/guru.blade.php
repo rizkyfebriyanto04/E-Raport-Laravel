@@ -107,6 +107,7 @@
             </div>
         </div>
     </div>
+    Laravel v{{ Illuminate\Foundation\Application::VERSION }} (PHP v{{ PHP_VERSION }})
     <div class="modal fade" id="editModal{{ $d->id }}" tabindex="-1" role="dialog" aria-labelledby="editModalLabel{{ $d->id }}" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
