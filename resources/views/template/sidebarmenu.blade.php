@@ -60,6 +60,59 @@
             </a>
         </li>
         @endif
+
+        @if(auth()->user()->role === 'guru')
+        <li
+            class="sidebar-item  has-sub">
+            <a href="#" class='sidebar-link'>
+                <i class="bi bi-stack"></i>
+                <span>Master Data</span>
+            </a>
+            <ul class="submenu ">
+                {{-- <li class="submenu-item  ">
+                    <a href="{{ route('guru') }}" class="submenu-link">Guru</a>
+                </li> --}}
+                <li class="submenu-item  ">
+                    <a href="{{ route('siswa') }}" class="submenu-link">Siswa</a>
+                </li>
+                <li class="submenu-item  ">
+                    <a href="{{ route('mapel') }}" class="submenu-link">Mata Pelajaran</a>
+                </li>
+            </ul>
+        </li>
+        {{-- <li class="sidebar-item  has-sub">
+            <a href="#" class='sidebar-link'>
+                <i class="fa fa-address-card"></i>
+                <span>Pengguna</span>
+            </a>
+            <ul class="submenu ">
+                <li class="submenu-item  ">
+                    <a href="{{ route('registrasi') }}" class="submenu-link">Daftar Akun</a>
+                </li>
+            </ul>
+        </li> --}}
+        <li class="sidebar-item  has-sub">
+            <a href="#" class='sidebar-link'>
+                <i class="fas fa-pen-square"></i>
+                <span>Input Data</span>
+            </a>
+            <ul class="submenu ">
+                <li class="submenu-item  ">
+                    <a href="{{ route('kehadiran') }}" class="submenu-link">Kehadiran</a>
+                </li>
+                <li class="submenu-item  ">
+                    <a href="{{ route('nilai') }}" class="submenu-link">Nilai</a>
+                </li>
+            </ul>
+        </li>
+        <li
+            class="sidebar-item ">
+            <a href="{{ route('digitalraport')}}" class='sidebar-link'>
+                <i class="fa fa-print"></i>
+                <span>Raport</span>
+            </a>
+        </li>
+        @endif
         {{-- <li
             class="sidebar-item  has-sub">
             <a href="#" class='sidebar-link'>

@@ -55,13 +55,13 @@
     </div>
 
     <div class="content">
-        <h2 align="center">Daftar Nilai Siswa</h2>
+        <h2 align="left">Identitas Siswa</h2>
 
         <fieldset>
             <table style="border: none;">
                 <tr>
                     <td width="15%">
-                        <span class="text-normal">Nama Lengkap</span>
+                        <span class="text-normal">Nama Peserta Didik</span>
                     </td>
                     <td width="35%">
                         <span class="text-normal">:
@@ -78,28 +78,28 @@
                 </tr>
                 <tr>
                     <td width="15%">
-                        <span class="text-normal">Kelas</span>
+                        <span class="text-normal">Bidang Studi Keahlian</span>
                     </td>
                     <td width="35%">
                         <span class="text-normal">:
-                            {{ $nilai[0]->kelas }}</span>
+                            {{ $nilai[0]->bidangjurusan }}</span>
                     </td>
 
                     <td width="15%">
-                        <span class="text-normal">Semester</span>
+                        <span class="text-normal">Kelas / Semester</span>
                     </td>
                     <td width="35%">
                         <span class="text-normal">:
-                            {{ $nilai[0]->semester }}</span>
+                            {{ $nilai[0]->kelas }} / {{ $nilai[0]->semester }}</span>
                     </td>
                 </tr>
                 <tr>
                     <td width="15%">
-                        <span class="text-normal">Jurusan</span>
+                        <span class="text-normal">Kompetensi Keahlian</span>
                     </td>
                     <td width="35%">
                         <span class="text-normal">:
-                            {{ $nilai[0]->jurusan }} ( {{ $nilai[0]->kdjurusan }} ) </span>
+                            {{ $nilai[0]->jurusan }}</span>
                     </td>
 
                     <td width="15%">
@@ -114,15 +114,16 @@
         </fieldset>
 
 
-        <br>
+        <h2 align="left">Daftar Hasil Siswa</h2>
+
         <table border="1">
             <thead>
                 <tr>
                     <th>MataPelajaran</th>
-                    <th>Nilai KKM</th>
+                    <th>KKM</th>
                     <th>Nilai</th>
                     <th>Terbilang</th>
-                    <th>Keterangan</th>
+                    <th>Ketercapaian Kompetensi</th>
                 </tr>
             </thead>
             <tbody>
@@ -139,6 +140,30 @@
 
             </tbody>
         </table>
+        <h2 align="left">Ketidakhadiran</h2>
+
+        {{-- <br> --}}
+        {{-- <h3> Ketidakhadiran</h3> --}}
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>Sakit</th>
+                    <th>Izin</th>
+                    <th>Tanpa Keterangan</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach($kehadiran as $n)
+                <tr>
+                    <td>{{ $n->sakit }} Hari</td>
+                    <td>{{ $n->izin }} Hari</td>
+                    <td>{{ $n->tanpa_keterangan }} Hari</td>
+                </tr>
+                @endforeach
+
+            </tbody>
+        </table>
+        <br>
     </div>
 </body>
 </html>

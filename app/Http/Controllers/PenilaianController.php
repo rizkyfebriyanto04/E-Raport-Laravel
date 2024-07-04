@@ -191,9 +191,13 @@ class PenilaianController extends Controller
             $n->nilai_terbilang = $this->terbilang($n->nilai);
         }
 
+        $kehadiran = DB::table('kehadiran_t as kt')
+                ->where('objectsiswafk', $id)
+                ->get();
+
         // $pdf = PDF::loadView('penilaian.cetakan', ['title' => $title, 'nilai' => $nilai]);
         // return $pdf->stream('Raport.pdf');
-        return view('penilaian.cetakan',compact('title','nilai'));
+        return view('penilaian.cetakan',compact('title','nilai','kehadiran'));
     }
 
 
