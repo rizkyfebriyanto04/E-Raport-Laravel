@@ -8,11 +8,15 @@ use Illuminate\Database\Eloquent\Model;
 class Mapel extends Model
 {
     use HasFactory;
-    protected $table = 'mapel_m';
+    protected $table = 'matpel_m';
     public $timestamps = false;
     protected $fillable = [
         'id',
         'matapelajaran',
         'nilaikkm',
+        'objectkelasfk',
+        'objectjenismapelfk',
+        'objectjurusanfk'
+
     ];
 }

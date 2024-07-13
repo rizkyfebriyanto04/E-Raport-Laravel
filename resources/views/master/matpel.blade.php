@@ -78,18 +78,90 @@
                                                                 <td>{{ $d->kelas }}</td>
                                                                 <td>{{ $d->jenismatpel }}</td>
                                                                 <td>
-                                                                    <form id="delete-form-{{ $d->id }}" action="{{ route('guru.hapusguru', $d->id) }}" method="POST" style="display: inline;">
+                                                                    <form id="delete-form-{{ $d->mpid }}" action="{{ route('mapel.hapusmapel', $d->mpid) }}" method="POST" style="display: inline;">
                                                                         @csrf
                                                                         @method('POST')
                                                                         <button type="submit" onclick="return confirm('Apakah Anda yakin ingin menghapus data?');" class="btn btn-primary">
                                                                             Hapus
                                                                         </button>
-                                                                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editModal{{ $d->id }}">
+                                                                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editModal{{ $d->mpid }}">
                                                                             Edit
                                                                         </button>
                                                                     </form>
                                                                 </td>
                                                             </tr>
+
+                                                            <div class="modal fade" id="editModal{{ $d->mpid }}" tabindex="-1" role="dialog" aria-labelledby="editModalLabel{{ $d->mpid }}" aria-hidden="true">
+                                                                <div class="modal-dialog" role="document">
+                                                                    <div class="modal-content">
+                                                                        <div class="modal-header">
+                                                                            <h5 class="modal-title" id="editModalLabel{{ $d->mpid }}">Edit Data Mata Pelajaran</h5>
+                                                                            <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                                                                                <span aria-hidden="true">&times;</span>
+                                                                            </button>
+                                                                        </div>
+                                                                        <form action="{{ route('mapel.updatemapel', $d->mpid) }}" method="POST">
+                                                                            @csrf
+                                                                            <div class="modal-body">
+                                                                                {{-- <div class="form-group"> --}}
+                                                                                    <label for="NameLengkap">Mata Pelajaran</label>
+                                                                                    <input type="text" class="form-control" id="NameLengkap" name="matapelajaran" value="{{ $d->matapelajaran }}" >
+                                                                                {{-- </div> --}}
+                                                                            </div>
+                                                                            <div class="modal-body">
+                                                                                {{-- <div class="form-group"> --}}
+                                                                                    <label for="NameLengkap">Nilai KKM</label>
+                                                                                    <input type="text" class="form-control" id="NameLengkap" name="nilaikkm" value="{{ $d->nilaikkm }}" >
+                                                                                {{-- </div> --}}
+                                                                            </div>
+                                                                            <div class="modal-body">
+                                                                                {{-- <div class="form-group"> --}}
+                                                                                    <label for="kelas{{ $d->mpid }}">Kelas</label>
+                                                                                    <select class="form-control" id="kelas{{ $d->mpid }}" name="kelas" >
+                                                                                        <option value="" selected>-- Pilih --</option>
+                                                                                        @foreach ($kelas as $k)
+                                                                                            <option value="{{ $k->id }}" {{ $d->objectkelasfk == $k->id ? 'selected' : '' }}>
+                                                                                                {{ $k->kelas }}
+                                                                                            </option>
+                                                                                        @endforeach
+                                                                                    </select>
+                                                                                {{-- </div> --}}
+                                                                            </div>
+                                                                            <div class="modal-body">
+                                                                                {{-- <div class="form-group"> --}}
+                                                                                    <label for="kelas{{ $d->mpid }}">Jenis Mata Pelajaran</label>
+                                                                                    <select class="form-control" id="kelas{{ $d->mpid }}" name="mapel" >
+                                                                                        <option value="" selected>-- Pilih --</option>
+                                                                                        @foreach ($jenismapel as $k)
+                                                                                            <option value="{{ $k->id }}" {{ $d->objectjenismapelfk == $k->id ? 'selected' : '' }}>
+                                                                                                {{ $k->jenismatpel }}
+                                                                                            </option>
+                                                                                        @endforeach
+                                                                                    </select>
+                                                                                {{-- </div> --}}
+                                                                            </div>
+                                                                            <div class="modal-body">
+                                                                                {{-- <div class="form-group"> --}}
+                                                                                    <label for="kelas{{ $d->mpid }}">Jurusan Mata Pelajaran</label>
+                                                                                    <select class="form-control" id="kelas{{ $d->mpid }}" name="mapel" >
+                                                                                        <option value="" selected>-- Pilih --</option>
+                                                                                        @foreach ($jurusan as $k)
+                                                                                            <option value="{{ $k->id }}" {{ $d->objectjurusanfk == $k->id ? 'selected' : '' }}>
+                                                                                                {{$k->jurusan}} ( {{ $k->kdjurusan }} )
+                                                                                            </option>
+                                                                                        @endforeach
+                                                                                    </select>
+                                                                                {{-- </div> --}}
+                                                                            </div>
+                                                                            <div class="modal-footer">
+                                                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+                                                                                <button type="submit" class="btn btn-primary">Simpan</button>
+                                                                            </div>
+                                                                        </form>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
                                                             @endforeach
                                                         </tbody>
                                                     </table>
@@ -244,7 +316,7 @@
                         <i data-feather="x"></i>
                     </button>
                 </div>
-                <form action="{{ route('guru.action') }}" method="POST">
+                <form action="{{ route('mapel.action') }}" method="POST">
                     @csrf
                     <div class="modal-body">
                         <label for="NameLengkap">Mata Pelajaran</label>
@@ -253,7 +325,7 @@
                         </div>
                         <label for="nisn">Nilai KKM</label>
                         <div class="form-group">
-                            <input class="form-control" id="nisn" type="text" name="nisn" placeholder="Nilai KKM"/>
+                            <input class="form-control" id="nisn" type="text" name="nilaikkm" placeholder="Nilai KKM"/>
                         </div>
                         <label for="kls">Kelas</label>
                         <div class="form-group">
@@ -299,76 +371,7 @@
             </div>
         </div>
     </div>
-    <div class="modal fade" id="editModal{{ $d->id }}" tabindex="-1" role="dialog" aria-labelledby="editModalLabel{{ $d->id }}" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="editModalLabel{{ $d->id }}">Edit Data Mata Pelajaran</h5>
-                    <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <form action="{{ route('mapel.updatemapel', $d->id) }}" method="POST">
-                    @csrf
-                    <div class="modal-body">
-                        {{-- <div class="form-group"> --}}
-                            <label for="NameLengkap">Mata Pelajaran</label>
-                            <input type="text" class="form-control" id="NameLengkap" name="matapelajaran" value="{{ $d->matapelajaran }}" >
-                        {{-- </div> --}}
-                    </div>
-                    <div class="modal-body">
-                        {{-- <div class="form-group"> --}}
-                            <label for="NameLengkap">Nilai KKM</label>
-                            <input type="text" class="form-control" id="NameLengkap" name="nilaikkm" value="{{ $d->nilaikkm }}" >
-                        {{-- </div> --}}
-                    </div>
-                    <div class="modal-body">
-                        {{-- <div class="form-group"> --}}
-                            <label for="kelas{{ $d->id }}">Kelas</label>
-                            <select class="form-control" id="kelas{{ $d->id }}" name="kelas" >
-                                <option value="" selected>-- Pilih --</option>
-                                @foreach ($kelas as $k)
-                                    <option value="{{ $k->id }}" {{ $d->objectkelasfk == $k->id ? 'selected' : '' }}>
-                                        {{ $k->kelas }}
-                                    </option>
-                                @endforeach
-                            </select>
-                        {{-- </div> --}}
-                    </div>
-                    <div class="modal-body">
-                        {{-- <div class="form-group"> --}}
-                            <label for="kelas{{ $d->id }}">Jenis Mata Pelajaran</label>
-                            <select class="form-control" id="kelas{{ $d->id }}" name="mapel" >
-                                <option value="" selected>-- Pilih --</option>
-                                @foreach ($jenismapel as $k)
-                                    <option value="{{ $k->id }}" {{ $d->objectjenismapelfk == $k->id ? 'selected' : '' }}>
-                                        {{ $k->jenismatpel }}
-                                    </option>
-                                @endforeach
-                            </select>
-                        {{-- </div> --}}
-                    </div>
-                    <div class="modal-body">
-                        {{-- <div class="form-group"> --}}
-                            <label for="kelas{{ $d->id }}">Jurusan Mata Pelajaran</label>
-                            <select class="form-control" id="kelas{{ $d->id }}" name="mapel" >
-                                <option value="" selected>-- Pilih --</option>
-                                @foreach ($jurusan as $k)
-                                    <option value="{{ $k->id }}" {{ $d->objectjurusanfk == $k->id ? 'selected' : '' }}>
-                                        {{$k->jurusan}} ( {{ $k->kdjurusan }} )
-                                    </option>
-                                @endforeach
-                            </select>
-                        {{-- </div> --}}
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
-                        <button type="submit" class="btn btn-primary">Simpan</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
+
     </section>
 
     <script>

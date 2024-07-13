@@ -7,7 +7,7 @@
             <div class="card-body px-4 py-4-5">
                 <div class="row">
                     <h5>
-                        Selamat Datang Orang Tua / Wali <b>{{ $siswa[0]->namalengkap }}</b>, di E-Raport SMK AL Amanah
+                        Selamat Datang , di E-Raport SMK AL Amanah
                     </h5>
                 </div>
             </div>

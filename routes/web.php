@@ -54,6 +54,7 @@ Route::post('mapel/update/{id}', [MapelController::class, 'updatemapel'])->name(
 
 Route::get('registrasi', [UserController::class, 'registrasi'])->name('registrasi');
 Route::post('registrasi', [UserController::class, 'registrasi_aksi'])->name('registrasi.action');
+Route::post('registrasilogin', [UserController::class, 'registrasi_aksi_login'])->name('registrasi.action.login');
 Route::post('delete-registrasi/{id}', [UserController::class, 'hapusregistrasi'])->name('registrasi.hapusregistrasi');
 Route::post('registrasi/update/{id}', [UserController::class, 'updateregistrasi'])->name('registrasi.updateregistrasi');
 

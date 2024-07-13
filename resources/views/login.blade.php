@@ -73,6 +73,11 @@
             <div class="card-body mt-2">
               <h4 class="mb-2" align="center">Selamat Datang di E - Raport</h4>
               <p class="mb-4" align="center">SMK AL AMANAH</p>
+                @if (session('success'))
+                    <div class="alert alert-success" id="success-alert">
+                        {{ session('success') }}
+                    </div>
+                @endif
               @if (session('error'))
                 <div class="alert alert-danger">
                     <b>Opps!</b> {{ session('error') }}
@@ -122,10 +127,11 @@
               </form>
 
               <p class="text-center">
-                <!-- <span>New on our platform?</span>
-                <a href="auth-register-basic.html">
-                  <span>Create an account</span>
-                </a> -->
+                <span>Belum Punya Akun?</span>
+                <a href="" data-bs-toggle="modal"
+                data-bs-target="#modalCenter">
+                  <span>Daftar Akun</span>
+                </a>
               </p>
             </div>
           </div>
@@ -147,6 +153,103 @@
         </div>
       </div>
     </div>
+
+    <div class="card-body">
+        <div class="row gy-3">
+          <!-- Modal Sizes -->
+          <div class="col-lg-4 col-md-6">
+            <small class="text-light fw-medium">Daftar Akun</small>
+            <!-- Large Modal -->
+            <div class="modal fade" id="modalCenter" tabindex="-1" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h4 class="modal-title" id="modalCenterTitle">Daftar Akun</h4>
+                      <button
+                        type="button"
+                        class="btn-close"
+                        data-bs-dismiss="modal"
+                        aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form action="{{ route('registrasi.action.login') }}" method="POST">
+                            @csrf
+                            <div class="modal-body">
+                                <label for="NameLengkap">Nama Lengkap</label>
+                                <div class="form-group">
+                                    <input class="form-control" id="NameLengkap" type="text" name="name" placeholder="Nama Lengkap"/>
+                                </div>
+                                <label for="email">Email</label>
+                                <div class="form-group">
+                                    <input class="form-control" id="email" type="email" name="email" placeholder="Email"/>
+                                </div>
+                                <label for="role">Role</label>
+                                <fieldset class="form-group">
+                                    <select class="form-select" id="basicSelect" name="role">
+                                        <option selected>-- Pilih --</option>
+                                        <option value="siswa">Siswa</option>
+                                        <option value="guru">Guru</option>
+                                        <option value="orangtua">Orangtua</option>
+                                    </select>
+                                </fieldset>
+
+                                <label for="password">Password</label>
+                                <div class="form-group">
+                                    <input type="password" id="password-horizontal" class="form-control" name="password" placeholder="Password">
+                                </div>
+
+                                <div id="additional-combobox1" style="display: none;">
+                                    <label for="objectsiswafk">Siswa</label>
+                                    <fieldset class="form-group">
+                                        <select class="choices form-select" id="additionalSelect1" name="objectsiswafk">
+                                            <option selected>--Pilih--</option>
+                                            @foreach ($siswa as $s)
+                                                <option value="{{ $s->id }}">{{ $s->nisn }} | {{ $s->namalengkap }}</option>
+                                            @endforeach
+                                        </select>
+                                    </fieldset>
+                                </div>
+
+                                <div id="additional-combobox3" style="display: none;">
+                                    <label for="objectgurufk">Guru</label>
+                                    <fieldset class="form-group">
+                                        <select class="choices form-select" id="additionalSelect1" name="objectgurufk">
+                                            <option selected>--Pilih--</option>
+                                            @foreach ($guru as $g)
+                                                <option value="{{ $g->id }}">{{ $g->namalengkap }}</option>
+                                            @endforeach
+                                        </select>
+                                    </fieldset>
+                                </div>
+
+                            </div>
+                            {{-- <div class="modal-footer">
+                                <button type="button" class="btn btn-light-secondary"
+                                    data-bs-dismiss="modal">
+                                    <i class="bx bx-x d-block d-sm-none"></i>
+                                    <span class="d-none d-sm-block">Tutup</span>
+                                </button>
+                                <button type="submit" class="btn btn-primary ms-1"
+                                    data-bs-dismiss="modal">
+                                    <i class="bx bx-check d-block d-sm-none"></i>
+                                    <span class="d-none d-sm-block">Simpan</span>
+                                </button>
+                            </div> --}}
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
+                                Tutup
+                            </button>
+                            <button type="submit" class="btn btn-primary">Simpan</button>
+                        </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+          </div>
+
+        </div>
+      </div>
 
     <!-- / Content -->
 
@@ -179,5 +282,35 @@
 
     <!-- Place this tag in your head or just before your close body tag. -->
     <script async defer src="https://buttons.github.io/buttons.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+        var alertBox = document.getElementById('success-alert');
+
+        setTimeout(function() {
+            alertBox.style.display = 'none';
+        }, 3000);
+
+        $(document).ready(function() {
+            $('#basicSelect').change(function() {
+                if ($(this).val() === 'siswa' || $(this).val() === 'orangtua' ) {
+                    $('#additional-combobox1').show();
+                } else {
+                    $('#additional-combobox1').hide();
+                }
+
+                // if ($(this).val() === 'orangtua') {
+                //     $('#additional-combobox1').show();
+                // } else {
+                //     $('#additional-combobox1').hide();
+                // }
+
+                if ($(this).val() === 'guru') {
+                    $('#additional-combobox3').show();
+                } else {
+                    $('#additional-combobox3').hide();
+                }
+            });
+        });
+    </script>
   </body>
 </html>

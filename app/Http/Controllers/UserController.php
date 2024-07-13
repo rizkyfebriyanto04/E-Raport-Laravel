@@ -6,6 +6,8 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Session;
+
 
 
 class UserController extends Controller
@@ -26,22 +28,45 @@ class UserController extends Controller
 
     public function registrasi_aksi(Request $request)
     {
-        // return $request;
 
-        $objectsiswafk = $request->objectsiswafk === '-- Pilih --' ? null : $request->objectsiswafk;
-        $objectgurufk = $request->objectgurufk === '-- Pilih --' ? null : $request->objectgurufk;
+        $siswa = $request->objectsiswafk === '--Pilih--' ? null : $request->objectsiswafk;
+        $guru = $request->objectgurufk === '--Pilih--' ? null : $request->objectgurufk;
+        // return $guru;
 
         $user = new User([
             'name' => $request->name,
             'email' => $request->email,
             'role' => $request->role,
             'password' => Hash::make($request->password),
-            'objectsiswafk' => $objectsiswafk,
-            'objectgurufk' => $objectgurufk,
+            'objectsiswafk' => $siswa,
+            'objectgurufk' => $guru,
         ]);
         $user->save();
 
         return redirect()->route('registrasi')->with('success', 'Akun Berhasil Di Tambahkan');
+    }
+
+    public function registrasi_aksi_login(Request $request)
+    {
+        // dd($request);
+
+        $siswa = $request->objectsiswafk === '--Pilih--' ? null : $request->objectsiswafk;
+        $guru = $request->objectgurufk === '--Pilih--' ? null : $request->objectgurufk;
+        // return $guru;
+
+        $user = new User([
+            'name' => $request->name,
+            'email' => $request->email,
+            'role' => $request->role,
+            'password' => Hash::make($request->password),
+            'objectsiswafk' => $siswa,
+            'objectgurufk' => $guru,
+        ]);
+        $user->save();
+
+        // return redirect()->route('/')->with('success', 'Daftar Akun berhasil');
+        Session::flash('success','Daftar Akun berhasil');
+            return redirect('/');
     }
 
     public function hapusregistrasi($id){

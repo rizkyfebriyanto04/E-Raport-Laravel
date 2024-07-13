@@ -16,7 +16,13 @@ class LoginController extends Controller
         }
         else {
             $title = 'E-Raport';
-            return view('login', compact('title'));
+            $data = DB::table('users')
+                ->get();
+            $siswa = DB::table('siswa_m')
+                    ->get();
+            $guru = DB::table('guru_m')
+                    ->get();
+            return view('login', compact('title','siswa','guru','data'));
         }
     }
 

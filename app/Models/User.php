@@ -24,6 +24,8 @@ class User extends Authenticatable
         'role',
         'objectsiswafk',
         'objectgurufk',
+        'created_at',
+        'updated_at'
     ];
 
     /**
