@@ -7,6 +7,8 @@ use PDF;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Providers\AppServiceProvider;
+use Illuminate\Support\Facades\Auth;
+
 
 class PenilaianController extends Controller
 {
@@ -118,14 +120,23 @@ class PenilaianController extends Controller
 
     public function digitalraport(Request $request){
         $title = 'E-Raport';
+        // dd(Auth::user()->name);
 
-        $siswa = DB::table('siswa_m as sm')
-                ->select('sm.*','km.*','jm.*','sm.id as smid')
-                ->leftJoin('kelas_m as km','km.id','=','sm.objectkelasfk')
-                ->leftJoin('jurusan_m as jm','jm.id','=','sm.objectjurusanfk')
-                // ->where('km.id,')
-                ->get();
-
+        if(Auth::user()->role == 'siswa'){
+            $siswa = DB::table('siswa_m as sm')
+            ->select('sm.*','km.*','jm.*','sm.id as smid')
+            ->leftJoin('kelas_m as km','km.id','=','sm.objectkelasfk')
+            ->leftJoin('jurusan_m as jm','jm.id','=','sm.objectjurusanfk')
+            ->where('sm.id', Auth::user()->objectsiswafk )
+            ->get();
+        }else{
+            $siswa = DB::table('siswa_m as sm')
+            ->select('sm.*','km.*','jm.*','sm.id as smid')
+            ->leftJoin('kelas_m as km','km.id','=','sm.objectkelasfk')
+            ->leftJoin('jurusan_m as jm','jm.id','=','sm.objectjurusanfk')
+            // ->where('km.id,')
+            ->get();
+        }
         return view('penilaian.raport',compact('title','siswa'));
     }
 

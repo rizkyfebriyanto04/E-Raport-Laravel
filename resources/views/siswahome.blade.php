@@ -12,6 +12,69 @@
                 </div>
             </div>
         </div>
+        <div class="card-body">
+            <div class="accordion" id="cardAccordion">
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingTwo">
+                        <button class="accordion-button collapsed" type="button"
+                            data-bs-toggle="collapse" data-bs-target="#collapseTwo"
+                            aria-expanded="false" aria-controls="collapseTwo">
+                            {{ $siswa[0]->namalengkap }}
+                        </button>
+                    </h2>
+                    <div id="collapseTwo" class="accordion-collapse collapse"
+                        aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+                        <div class="accordion-body">
+                            <div class="row">
+                                <div class="col-md-6 col-12">
+                                    <div class="form-group">
+                                        <label for="first-name-column">NIS / NISN</label>
+                                        <input type="text" id="first-name-column" class="form-control"
+                                            value="{{ $siswa[0]->nisn }}" name="fname-column" readonly>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-12">
+                                    <div class="form-group">
+                                        <label for="last-name-column">Jenis Kelamin</label>
+                                        <input type="text" id="last-name-column" class="form-control"
+                                        value="{{ $siswa[0]->jk }}" name="lname-column" readonly>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-12">
+                                    <div class="form-group">
+                                        <label for="city-column">Tanggal Lahir</label>
+                                        <input type="text" id="city-column" class="form-control" value="{{ $siswa[0]->ttl }}"
+                                            name="city-column" readonly>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-12">
+                                    <div class="form-group">
+                                        <label for="country-floating">Alamat</label>
+                                        <input type="text" id="country-floating" class="form-control"
+                                            name="country-floating" value="{{ $siswa[0]->alamat }}" readonly>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-12">
+                                    <div class="form-group">
+                                        <label for="company-column">Agama</label>
+                                        <input type="text" id="company-column" class="form-control"
+                                            name="company-column" value="{{ $siswa[0]->agama }}" readonly>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-12">
+                                    <div class="form-group">
+                                        <label for="email-id-column">Nama Orangtua/Wali</label>
+                                        <input type="email" id="email-id-column" class="form-control"
+                                            name="email-id-column" value="{{ Auth::user()->name }}" readonly>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br>
     </div>
 </div>
     <div class="row">

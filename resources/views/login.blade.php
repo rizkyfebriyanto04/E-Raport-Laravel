@@ -187,9 +187,9 @@
                                 <fieldset class="form-group">
                                     <select class="form-select" id="basicSelect" name="role">
                                         <option selected>-- Pilih --</option>
-                                        <option value="siswa">Siswa</option>
+                                        <option value="siswa">Siswa / Orangtua Wali</option>
                                         <option value="guru">Guru</option>
-                                        <option value="orangtua">Orangtua</option>
+                                        {{-- <option value="orangtua">Orangtua</option> --}}
                                     </select>
                                 </fieldset>
 

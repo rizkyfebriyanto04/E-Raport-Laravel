@@ -35,7 +35,9 @@
                                         <th>Agama</th>
                                         <th>Alamat</th>
                                         <th>No Hp</th>
+                                        @if(auth()->user()->role === 'admin')
                                         <th>Aksi</th>
+                                        @endif
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -63,12 +65,14 @@
                                                 {{-- <button type="submit" onclick="return confirm('Apakah Anda yakin ingin menghapus data?');" style="border: none; background-color: transparent;">
                                                     <i class="badge-circle badge-circle-light-secondary font-medium-1" data-feather="trash"></i>
                                                 </button> --}}
+                                                @if(auth()->user()->role === 'admin')
                                                 <button type="submit" onclick="return confirm('Apakah Anda yakin ingin menghapus data?');" class="btn btn-primary">
                                                     Hapus
                                                 </button>
                                                 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editModal{{ $d->id }}">
                                                     Edit
                                                 </button>
+                                                @endif
                                             </form>
                                         </td>
                                     </tr>

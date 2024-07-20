@@ -34,7 +34,7 @@ class HomeController extends Controller
             $title = 'E-Raport';
 
             $guru = DB::table('guru_m')->count();
-            $siswa = DB::table('siswa_m')->count();
+            $siswa = DB::table('siswa_m')->where('id', Auth::user()->objectsiswafk)->get();
             $jurusan = DB::table('jurusan_m')->count();
 
             $jklakilaki = DB::table('siswa_m')->where('jk', 'Laki - Laki')->count();
