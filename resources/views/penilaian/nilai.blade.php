@@ -44,6 +44,7 @@
                                             {{-- <button type="button" class="btn btn-primary open-modal" data-bs-toggle="modal" data-bs-target="#editModal{{ $d->id }}">
                                                 Input Nilai
                                             </button> --}}
+                                            <a href="#" class="btn btn-primary" data-id="{{ $d->smid }}" data-bs-toggle="modal" data-bs-target="#menampilkannilai">Menampilkan Nilai</a>
                                             <a href="/penilaiansiswa/{{ $d->smid }}" class="btn btn-primary">Input Nilai</a>
                                         </td>
                                     </tr>
@@ -57,14 +58,58 @@
         </div>
 
     </div>
+    <div class="modal fade" id="menampilkannilai" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="editModalLabel">Detail Nilai Siswa</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div id="nilaiContainer">
+                        <!-- Data akan dimuat di sini -->
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+                </div>
+            </div>
+        </div>
+    </div>
     </section>
 
     <script>
-        var alertBox = document.getElementById('success-alert');
+        $(document).ready(function() {
+            $('#menampilkannilai').on('show.bs.modal', function (event) {
+                var button = $(event.relatedTarget); // Tombol yang diklik
+                var id = button.data('id'); // Ambil ID dari data-id
+                var modal = $(this);
+                var container = modal.find('#nilaiContainer');
 
-        setTimeout(function() {
-            alertBox.style.display = 'none';
-        }, 3000);
+                $.ajax({
+                    url: '/menampilkannilai/' + id,
+                    method: 'GET',
+                    success: function(data) {
+                        container.empty(); // Kosongkan kontainer sebelum mengisi data
 
-    </script>
+                        data.forEach(function(item) {
+                            // Misalnya, menampilkan nama lengkap dan nilai untuk setiap item
+                            container.append(`
+                                <div class="mb-3">
+                                    <strong>Nama Lengkap:</strong> ${item.namalengkap}<br>
+                                    <strong>Matpel:</strong> ${item.jenismatpel}<br>
+                                    <strong>Nilai:</strong> ${item.nilai} <!-- Ubah sesuai dengan kolom data Anda -->
+                                </div>
+                            `);
+                        });
+                    },
+                    error: function(xhr) {
+                        // Menangani jika ada kesalahan saat mendapatkan data
+                        container.html('<p>Terjadi kesalahan saat memuat data.</p>');
+                    }
+                });
+            });
+        });
+        </script>
+
 @endsection

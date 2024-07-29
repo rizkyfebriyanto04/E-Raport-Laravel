@@ -64,6 +64,7 @@ Route::post('updateKehadiran', [PenilaianController::class, 'updateKehadiran']);
 
 Route::get('penilaian', [PenilaianController::class, 'penilaian_nilai'])->name('nilai');
 Route::get('penilaiansiswa/{id}', [PenilaianController::class, 'penilaian_aksi']);
+Route::get('menampilkannilai/{id}', [PenilaianController::class, 'menampilkannilai']);
 Route::post('penilaiandaftarsiswa', [PenilaianController::class, 'penilaian_update'])->name('penilaian.action');
 
 

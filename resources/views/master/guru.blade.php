@@ -88,7 +88,7 @@
                         </div> --}}
                         <label for="NameLengkap">Nama Lengkap</label>
                         <div class="form-group">
-                            <input class="form-control" id="NameLengkap" type="text" name="namalengkap" placeholder="Nama Lengkap"/>
+                            <input class="form-control" id="NameLengkap" type="text" name="namalengkap" placeholder="Nama Lengkap" required/>
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -140,5 +140,16 @@
         setTimeout(function() {
             alertBox.style.display = 'none';
         }, 3000);
+
+        // document.addEventListener("DOMContentLoaded", function() {
+        //     document.getElementById("myForm").addEventListener("submit", function(event) {
+        //         var namalengkap = document.getElementById("NameLengkap").value;
+        //         if (namalengkap.trim() === "") {
+        //             alert("Nama Lengkap harus diisi!");
+        //             event.preventDefault();
+        //         }
+        //     });
+        // });
     </script>
+
 @endsection

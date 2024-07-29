@@ -211,5 +211,23 @@ class PenilaianController extends Controller
         return view('penilaian.cetakan',compact('title','nilai','kehadiran'));
     }
 
+    public function menampilkannilai($id){
+        // return $id;
+        $title = 'E-Raport';
+        // return $id;
 
+        $nilai = DB::table('hasilraport_t as hr')
+                ->select('hr.*','mp.*','hr.id as hrid','sm.*','sm.namalengkap','km.*','sms.*','jm.*','jmt.jenismatpel')
+                ->leftJoin('matpel_m as mp','mp.id','=','hr.objectmatpelfk')
+                ->leftJoin('siswa_m as sm','sm.id','=','hr.objectsiswafk')
+                ->leftJoin('kelas_m as km','km.id','=','sm.objectkelasfk')
+                ->leftJoin('semester_m as sms','sms.id','=','sm.objectsemesterfk')
+                ->leftJoin('jurusan_m as jm','jm.id','=','sm.objectjurusanfk')
+                ->leftJoin('jenismapel_m as jmt','jmt.id','=','mp.objectjenismapelfk')
+                ->where('sm.id', $id)
+                ->get();
+        // return $nilai;
+
+        return response()->json($nilai);
+    }
 }
