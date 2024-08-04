@@ -108,30 +108,18 @@ class SiswaController extends Controller
 
     public function updatesiswa(Request $request, $id)
     {
-        $request->validate([
-            'namalengkap' => 'required',
-            'nisn' => 'required',
-            'ttl' => 'required',
-            'jk' => 'required',
-            'kelas' => 'required',
-            'jurusan' => 'required',
-            'semester' => 'required',
-            'walikelas' => 'required',
-            'agama' => 'required',
-            'alamat' => 'required',
-            'nohp' => 'required',
-        ]);
+        // return $request;
 
         $siswa = Siswa::find($id);
         $siswa->namalengkap = $request->namalengkap;
         $siswa->nisn = $request->nisn;
         $siswa->ttl = $request->ttl;
         $siswa->jk = $request->jk;
-        $siswa->kelas = $request->kelas;
-        $siswa->jurusan = $request->jurusan;
-        $siswa->semester = $request->semester;
-        $siswa->walikelas = $request->walikelas;
-        $siswa->agama = $request->agama;
+        $siswa->objectkelasfk = $request->kelas;
+        $siswa->objectjurusanfk = $request->jurusan;
+        $siswa->objectsemesterfk = $request->semester;
+        $siswa->objectgurufk = $request->walikelas;
+        // $siswa->agama = $request->agama;
         $siswa->alamat = $request->alamat;
         $siswa->nohp = $request->nohp;
         $siswa->save();

@@ -76,6 +76,111 @@
                                             </form>
                                         </td>
                                     </tr>
+
+                                    <div class="modal fade" id="editModal{{ $d->id }}" tabindex="-1" role="dialog" aria-labelledby="editModalLabel{{ $d->id }}" aria-hidden="true">
+                                        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="editModalLabel{{ $d->id }}">Edit Data Siswa</h5>
+                                                    <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                <form action="{{ route('siswa.updatesiswa', $d->id) }}" method="POST">
+                                                    @csrf
+                                                    <div class="modal-body">
+                                                        <div class="container-fluid">
+                                                            <div class="row">
+                                                                <div class="col-md-6">
+                                                                    <div class="form-group">
+                                                                        <label for="NameLengkap{{ $d->id }}">Nama Lengkap</label>
+                                                                        <input type="text" class="form-control" id="NameLengkap{{ $d->id }}" name="namalengkap" value="{{ $d->namalengkap }}" required>
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                        <label for="nisn{{ $d->id }}">NISN</label>
+                                                                        <input type="text" class="form-control" id="nisn{{ $d->id }}" name="nisn" value="{{ $d->nisn }}" required>
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                        <label for="ttl{{ $d->id }}">Tanggal Lahir</label>
+                                                                        <input type="date" class="form-control" id="ttl{{ $d->id }}" name="ttl" value="{{ $d->ttl }}" required>
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                        <label for="jk{{ $d->id }}">Jenis Kelamin</label>
+                                                                        {{-- <input type="text" class="form-control" id="jk{{ $d->id }}" name="jk" value="{{ $d->jk }}" required> --}}
+                                                                        <fieldset class="form-group">
+                                                                            <select class="form-select" id="basicSelect" name="jk">
+                                                                                <option value="" disabled>-- Pilih --</option>
+                                                                                <option value="Perempuan" {{ $d->jk == 'Perempuan' ? 'selected' : '' }}>Perempuan</option>
+                                                                                <option value="Laki - Laki" {{ $d->jk == 'Laki - Laki' ? 'selected' : '' }}>Laki - Laki</option>
+                                                                            </select>
+                                                                        </fieldset>
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                        <label for="kelas{{ $d->id }}">Kelas</label>
+                                                                        <select class="form-control" id="kelas{{ $d->id }}" name="kelas" required>
+                                                                            <option value="" selected>-- Pilih --</option>
+                                                                            @foreach ($kelas as $k)
+                                                                                <option value="{{ $k->id }}" {{ $d->objectkelasfk == $k->id ? 'selected' : '' }}>
+                                                                                    {{ $k->kelas }}
+                                                                                </option>
+                                                                            @endforeach
+                                                                        </select>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-6">
+                                                                    <div class="form-group">
+                                                                        <label for="jurusan{{ $d->id }}">Jurusan</label>
+                                                                        <select class="form-control" id="jurusan{{ $d->id }}" name="jurusan" required>
+                                                                            <option value="" selected>-- Pilih --</option>
+                                                                            @foreach ($jurusan as $k)
+                                                                                <option value="{{ $k->id }}" {{ $d->objectjurusanfk == $k->id ? 'selected' : '' }}>
+                                                                                    {{ $k->kdjurusan }} {{ $k->jurusan }}
+                                                                                </option>
+                                                                            @endforeach
+                                                                        </select>
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                        <label for="semester{{ $d->id }}">Semester</label>
+                                                                        <select class="form-control" id="semester{{ $d->id }}" name="semester" required>
+                                                                            <option value="" selected>-- Pilih --</option>
+                                                                            @foreach ($semester as $k)
+                                                                                <option value="{{ $k->id }}" {{ $d->objectsemesterfk == $k->id ? 'selected' : '' }}>
+                                                                                    {{ $k->semester }} {{ $k->tahunajaran }}
+                                                                                </option>
+                                                                            @endforeach
+                                                                        </select>
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                        <label for="wl{{ $d->id }}">Wali Kelas</label>
+                                                                        <select class="form-control" id="wl{{ $d->id }}" name="walikelas" required>
+                                                                            <option value="" selected>-- Pilih --</option>
+                                                                            @foreach ($guru as $k)
+                                                                                <option value="{{ $k->id }}" {{ $d->objectgurufk == $k->id ? 'selected' : '' }}>
+                                                                                    {{ $k->namalengkap }}
+                                                                                </option>
+                                                                            @endforeach
+                                                                        </select>
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                        <label for="alamat{{ $d->id }}">Alamat</label>
+                                                                        <input type="text" class="form-control" id="alamat{{ $d->id }}" name="alamat" value="{{ $d->alamat }}" required>
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                        <label for="nohp{{ $d->id }}">No HP</label>
+                                                                        <input type="text" class="form-control" id="nohp{{ $d->id }}" name="nohp" value="{{ $d->nohp }}" required>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+                                                        <button type="submit" class="btn btn-primary">Simpan</button>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
                                     @endforeach
                                 </tbody>
                             </table>
@@ -192,110 +297,7 @@
     </div>
 
     <!-- Edit Modal -->
-    <div class="modal fade" id="editModal{{ $d->id }}" tabindex="-1" role="dialog" aria-labelledby="editModalLabel{{ $d->id }}" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="editModalLabel{{ $d->id }}">Edit Data Siswa</h5>
-                    <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <form action="{{ route('siswa.updatesiswa', $d->id) }}" method="POST">
-                    @csrf
-                    <div class="modal-body">
-                        <div class="container-fluid">
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label for="NameLengkap{{ $d->id }}">Nama Lengkap</label>
-                                        <input type="text" class="form-control" id="NameLengkap{{ $d->id }}" name="namalengkap" value="{{ $d->namalengkap }}" required>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="nisn{{ $d->id }}">NISN</label>
-                                        <input type="text" class="form-control" id="nisn{{ $d->id }}" name="nisn" value="{{ $d->nisn }}" required>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="ttl{{ $d->id }}">Tanggal Lahir</label>
-                                        <input type="date" class="form-control" id="ttl{{ $d->id }}" name="ttl" value="{{ $d->ttl }}" required>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="jk{{ $d->id }}">Jenis Kelamin</label>
-                                        {{-- <input type="text" class="form-control" id="jk{{ $d->id }}" name="jk" value="{{ $d->jk }}" required> --}}
-                                        <fieldset class="form-group">
-                                            <select class="form-select" id="basicSelect" name="role">
-                                                <option value="" disabled>-- Pilih --</option>
-                                                <option value="Perempuan" {{ $d->jk == 'Perempuan' ? 'selected' : '' }}>Perempuan</option>
-                                                <option value="Laki - Laki" {{ $d->jk == 'Laki - Laki' ? 'selected' : '' }}>Laki - Laki</option>
-                                            </select>
-                                        </fieldset>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="kelas{{ $d->id }}">Kelas</label>
-                                        <select class="form-control" id="kelas{{ $d->id }}" name="kelas" required>
-                                            <option value="" selected>-- Pilih --</option>
-                                            @foreach ($kelas as $k)
-                                                <option value="{{ $k->id }}" {{ $d->objectkelasfk == $k->id ? 'selected' : '' }}>
-                                                    {{ $k->kelas }}
-                                                </option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label for="jurusan{{ $d->id }}">Jurusan</label>
-                                        <select class="form-control" id="jurusan{{ $d->id }}" name="jurusan" required>
-                                            <option value="" selected>-- Pilih --</option>
-                                            @foreach ($jurusan as $k)
-                                                <option value="{{ $k->id }}" {{ $d->objectjurusanfk == $k->id ? 'selected' : '' }}>
-                                                    {{ $k->kdjurusan }} {{ $k->jurusan }}
-                                                </option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="semester{{ $d->id }}">Semester</label>
-                                        <select class="form-control" id="semester{{ $d->id }}" name="semester" required>
-                                            <option value="" selected>-- Pilih --</option>
-                                            @foreach ($semester as $k)
-                                                <option value="{{ $k->id }}" {{ $d->objectsemesterfk == $k->id ? 'selected' : '' }}>
-                                                    {{ $k->semester }} {{ $k->tahunajaran }}
-                                                </option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="wl{{ $d->id }}">Wali Kelas</label>
-                                        <select class="form-control" id="wl{{ $d->id }}" name="walikelas" required>
-                                            <option value="" selected>-- Pilih --</option>
-                                            @foreach ($guru as $k)
-                                                <option value="{{ $k->id }}" {{ $d->objectgurufk == $k->id ? 'selected' : '' }}>
-                                                    {{ $k->namalengkap }}
-                                                </option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="alamat{{ $d->id }}">Alamat</label>
-                                        <input type="text" class="form-control" id="alamat{{ $d->id }}" name="alamat" value="{{ $d->alamat }}" required>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="nohp{{ $d->id }}">No HP</label>
-                                        <input type="text" class="form-control" id="nohp{{ $d->id }}" name="nohp" value="{{ $d->nohp }}" required>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
-                        <button type="submit" class="btn btn-primary">Simpan</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
+
 
 
     </section>
