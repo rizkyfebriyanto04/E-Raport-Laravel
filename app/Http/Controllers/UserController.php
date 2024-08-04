@@ -84,15 +84,15 @@ class UserController extends Controller
 
         // $guru->namalengkap = $request->namalengkap;
         $guru = User::find($id);
-        $guru->name = $request->name;
+        $guru->name = $request->namalengkap;
         $guru->email = $request->email;
         $guru->role = $request->role;
         $guru->password = Hash::make($request->password);
-        $guru->objectsiswafk = $request->objectsiswafk;
-        $guru->objectgurufk = $request->objectgurufk;
+        // $guru->objectsiswafk = $request->objectsiswafk;
+        // $guru->objectgurufk = $request->objectgurufk;
         $guru->save();
 
-        return redirect()->route('guru')->with('success', 'Data Berhasil Diubah');
+        return redirect()->route('registrasi')->with('success', 'Data Berhasil Diubah');
     }
 
 

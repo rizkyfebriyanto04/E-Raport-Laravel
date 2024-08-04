@@ -53,6 +53,53 @@
                                             </form>
                                         </td>
                                     </tr>
+
+                                    <div class="modal fade" id="editModal{{ $d->id }}" tabindex="-1" role="dialog" aria-labelledby="editModalLabel{{ $d->id }}" aria-hidden="true">
+                                        <div class="modal-dialog" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="editModalLabel{{ $d->id }}">Edit Data Akun</h5>
+                                                    <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                <form action="{{ route('registrasi.updateregistrasi', $d->id) }}" method="POST">
+                                                    @csrf
+                                                    <div class="modal-body">
+                                                        <div class="form-group">
+                                                            <label for="name">Nama Lengkap</label>
+                                                            <input type="text" class="form-control" id="NameLengkap" name="namalengkap" value="{{ $d->name }}" required>
+                                                        </div>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <div class="form-group">
+                                                            <label for="Email">Email</label>
+                                                            <input type="email" class="form-control" id="Email" name="email" value="{{ $d->email }}" required>
+                                                        </div>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <div class="form-group">
+                                                            <label for="Email">Role</label>
+                                                            {{-- <input type="email" class="form-control" id="Email" name="role" value="{{ $d->role }}" required> --}}
+                                                            <fieldset class="form-group">
+                                                                <select class="form-select" id="basicSelect" name="role">
+                                                                    <option value="" disabled>-- Pilih --</option>
+                                                                    <option value="siswa" {{ $d->role == 'siswa' ? 'selected' : '' }}>Siswa</option>
+                                                                    <option value="guru" {{ $d->role == 'guru' ? 'selected' : '' }}>Guru</option>
+                                                                    <option value="orangtua" {{ $d->role == 'orangtua' ? 'selected' : '' }}>Orangtua</option>
+                                                                </select>
+                                                            </fieldset>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+                                                        <button type="submit" class="btn btn-primary">Simpan</button>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
                                     @endforeach
                                 </tbody>
                             </table>
@@ -178,52 +225,7 @@
             </div>
         </div>
     </div>
-    <div class="modal fade" id="editModal{{ $d->id }}" tabindex="-1" role="dialog" aria-labelledby="editModalLabel{{ $d->id }}" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="editModalLabel{{ $d->id }}">Edit Data Akun</h5>
-                    <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <form action="{{ route('registrasi.updateregistrasi', $d->id) }}" method="POST">
-                    @csrf
-                    <div class="modal-body">
-                        <div class="form-group">
-                            <label for="name">Nama Lengkap</label>
-                            <input type="text" class="form-control" id="NameLengkap" name="name" value="{{ $d->name }}" required>
-                        </div>
-                    </div>
-                    <div class="modal-body">
-                        <div class="form-group">
-                            <label for="Email">Email</label>
-                            <input type="email" class="form-control" id="Email" name="namalengkap" value="{{ $d->email }}" required>
-                        </div>
-                    </div>
-                    <div class="modal-body">
-                        <div class="form-group">
-                            <label for="Email">Role</label>
-                            {{-- <input type="email" class="form-control" id="Email" name="role" value="{{ $d->role }}" required> --}}
-                            <fieldset class="form-group">
-                                <select class="form-select" id="basicSelect" name="role">
-                                    <option value="" disabled>-- Pilih --</option>
-                                    <option value="siswa" {{ $d->role == 'siswa' ? 'selected' : '' }}>Siswa</option>
-                                    <option value="guru" {{ $d->role == 'guru' ? 'selected' : '' }}>Guru</option>
-                                    <option value="orangtua" {{ $d->role == 'orangtua' ? 'selected' : '' }}>Orangtua</option>
-                                </select>
-                            </fieldset>
-                        </div>
-                    </div>
 
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
-                        <button type="submit" class="btn btn-primary">Simpan</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
     </section>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script>
