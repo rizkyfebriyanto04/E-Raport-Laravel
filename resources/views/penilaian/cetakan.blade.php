@@ -127,19 +127,36 @@
                 </tr>
             </thead>
             <tbody>
+                @php
+                    $totalNilai = 0;
+                    $jumlahMataPelajaran = count($nilai);
+                @endphp
                 @foreach($nilai as $n)
+                @php
+                    $totalNilai += $n->nilai;
+                @endphp
                 <tr>
                     <td>{{ $n->matapelajaran }}</td>
                     <td>{{ $n->nilaikkm }}</td>
                     <td>{{ $n->nilai }}</td>
-                    {{-- <td>{{ $n->terbilang }}</td> --}}
                     <td>{{ $n->nilai_terbilang }}</td>
                     <td>{{ $n->ket }}</td>
                 </tr>
                 @endforeach
-
+                @php
+                    $rataRataNilai = $jumlahMataPelajaran > 0 ? $totalNilai / $jumlahMataPelajaran : 0;
+                    $rataRataNilaiFormatted = number_format($rataRataNilai, 1);
+                    $rataRataNilaiTerbilang = $terbilang($rataRataNilaiFormatted);
+                @endphp
+                <tr>
+                    <td colspan="2">Rata-Rata Nilai</td>
+                    <td colspan="1">{{ $rataRataNilaiFormatted }}</td>
+                    <td colspan="2">{{ $rataRataNilaiTerbilang }}</td>
+                </tr>
             </tbody>
         </table>
+
+
         <h2 align="left">Ketidakhadiran</h2>
 
         {{-- <br> --}}

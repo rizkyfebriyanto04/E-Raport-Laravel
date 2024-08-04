@@ -56,13 +56,23 @@
                                         <h6 style="text-align: center;">Mata Pelajaran</h6>
                                         <input class="form-control" type="text" value="{{ $n->matapelajaran }}" disabled>
                                     </div>
-                                    <div class="col-sm-4">
+                                    <div class="col-sm-2">
+                                        <h6 style="text-align: center;">Nilai KKM</h6>
+                                        <input class="form-control" type="text" value="{{ $n->nilaikkm }}" disabled>
+                                    </div>
+                                    <div class="col-sm-2">
                                         <h6 style="text-align: center;">Nilai</h6>
                                         <input class="form-control" type="number" name="nilai[]" value="{{ $n->nilai }}">
                                     </div>
                                     <div class="col-sm-4">
                                         <h6 style="text-align: center;">Keterangan</h6>
-                                        <input class="form-control" type="text" name="ket[]" value="{{ $n->ket }}">
+                                        {{-- <input class="form-control" type="text" name="ket[]" value="{{ $n->ket }}"> --}}
+                                        <select class="form-control" name="ket[]">
+                                            <option value="-" {{ $n->ket == '-' ? 'selected' : '' }}>--pilih--</option>
+                                            <option value="Kompeten" {{ $n->ket == 'Kompeten' ? 'selected' : '' }}>Kompeten</option>
+                                            <option value="Lulus Cukup" {{ $n->ket == 'Lulus Cukup' ? 'selected' : '' }}>Lulus Cukup</option>
+                                            <option value="Cukup" {{ $n->ket == 'Cukup' ? 'selected' : '' }}>Cukup</option>
+                                        </select>
                                     </div>
                                 </div>
                                 @endforeach

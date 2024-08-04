@@ -206,9 +206,13 @@ class PenilaianController extends Controller
                 ->where('objectsiswafk', $id)
                 ->get();
 
+        $terbilang = function($nilai) {
+            return $this->terbilang($nilai);
+        };
+
         // $pdf = PDF::loadView('penilaian.cetakan', ['title' => $title, 'nilai' => $nilai]);
         // return $pdf->stream('Raport.pdf');
-        return view('penilaian.cetakan',compact('title','nilai','kehadiran'));
+        return view('penilaian.cetakan',compact('title','nilai','kehadiran','terbilang'));
     }
 
     public function menampilkannilai($id){
