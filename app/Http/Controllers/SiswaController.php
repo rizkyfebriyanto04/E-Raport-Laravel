@@ -27,16 +27,48 @@ class SiswaController extends Controller
         $jurusan = DB::table('jurusan_m')->get();
         $semester = DB::table('semester_m')->get();
 
-        return view('master.siswa',compact('title','data','guru','kelas','jurusan','semester'));
+        $nisn = $this->generateNisn();
+
+        return view('master.siswa',compact('title','data','guru','kelas','jurusan','semester','nisn'));
     }
+
+    private function generateNisn()
+    {
+        $currentYear = date('y');
+        $codePrefix = '16.010';
+
+
+        $lastNisn = DB::table('siswa_m')
+            ->where('nisn', 'like', "$currentYear.$codePrefix.%")
+            ->orderByRaw('CAST(SUBSTRING_INDEX(nisn, ".", -1) AS UNSIGNED) DESC')
+            ->value('nisn');
+
+
+        $lastNumber = 0;
+        if ($lastNisn) {
+            $parts = explode('.', $lastNisn);
+            if (isset($parts[3])) {
+                $lastNumber = intval($parts[3]);
+            }
+        }
+
+        $newNumber = str_pad($lastNumber + 1, 3, '0', STR_PAD_LEFT);
+
+        $newNisn = $currentYear . '.' . $codePrefix . '.' . $newNumber;
+
+        return $newNisn;
+    }
+
 
     public function siswa_aksi(Request $request)
     {
         DB::beginTransaction();
         try {
+            $nisn = $this->generateNisn();
+
             $siswa = new Siswa([
                 'namalengkap' => $request->namalengkap,
-                'nisn' => $request->nisn,
+                'nisn' => $nisn,
                 'objectkelasfk' => $request->kelas,
                 'objectjurusanfk' => $request->jurusan,
                 'objectsemesterfk' => $request->semester,

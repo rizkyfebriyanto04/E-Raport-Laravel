@@ -78,16 +78,16 @@
                                                                 <td>{{ $d->kelas }}</td>
                                                                 <td>{{ $d->jenismatpel }}</td>
                                                                 <td>
-                                                                    <form id="delete-form-{{ $d->mpid }}" action="{{ route('mapel.hapusmapel', $d->mpid) }}" method="POST" style="display: inline;">
+                                                                    {{-- <form id="delete-form-{{ $d->mpid }}" action="{{ route('mapel.hapusmapel', $d->mpid) }}" method="POST" style="display: inline;">
                                                                         @csrf
                                                                         @method('POST')
                                                                         <button type="submit" onclick="return confirm('Apakah Anda yakin ingin menghapus data?');" class="btn btn-primary">
                                                                             Hapus
-                                                                        </button>
+                                                                        </button> --}}
                                                                         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editModal{{ $d->mpid }}">
                                                                             Edit
                                                                         </button>
-                                                                    </form>
+                                                                    {{-- </form> --}}
                                                                 </td>
                                                             </tr>
 
@@ -194,16 +194,16 @@
                                                                 <td>{{ $d->kelas }}</td>
                                                                 <td>{{ $d->jenismatpel }}</td>
                                                                 <td>
-                                                                    <form id="delete-form-{{ $d->mpid }}" action="{{ route('mapel.hapusmapel', $d->mpid) }}" method="POST" style="display: inline;">
+                                                                    {{-- <form id="delete-form-{{ $d->mpid }}" action="{{ route('mapel.hapusmapel', $d->mpid) }}" method="POST" style="display: inline;">
                                                                         @csrf
                                                                         @method('POST')
                                                                         <button type="submit" onclick="return confirm('Apakah Anda yakin ingin menghapus data?');" class="btn btn-primary">
                                                                             Hapus
-                                                                        </button>
+                                                                        </button> --}}
                                                                         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editModal{{ $d->mpid }}">
                                                                             Edit
                                                                         </button>
-                                                                    </form>
+                                                                    {{-- </form> --}}
                                                                 </td>
                                                             </tr>
 
@@ -310,16 +310,16 @@
                                                                 <td>{{ $d->kelas }}</td>
                                                                 <td>{{ $d->jenismatpel }}</td>
                                                                 <td>
-                                                                    <form id="delete-form-{{ $d->mpid }}" action="{{ route('mapel.hapusmapel', $d->mpid) }}" method="POST" style="display: inline;">
+                                                                    {{-- <form id="delete-form-{{ $d->mpid }}" action="{{ route('mapel.hapusmapel', $d->mpid) }}" method="POST" style="display: inline;">
                                                                         @csrf
                                                                         @method('POST')
                                                                         <button type="submit" onclick="return confirm('Apakah Anda yakin ingin menghapus data?');" class="btn btn-primary">
                                                                             Hapus
-                                                                        </button>
+                                                                        </button> --}}
                                                                         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editModal{{ $d->mpid }}">
                                                                             Edit
                                                                         </button>
-                                                                    </form>
+                                                                    {{-- </form> --}}
                                                                 </td>
                                                             </tr>
 

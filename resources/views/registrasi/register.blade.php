@@ -17,6 +17,11 @@
                                 {{ session('success') }}
                             </div>
                         @endif
+                        @if (session('error'))
+                            <div class="alert alert-danger" id="success-alert">
+                                {{ session('error') }}
+                            </div>
+                        @endif
                     </div>
                     <div class="card-content">
                         <div class="table-responsive">
