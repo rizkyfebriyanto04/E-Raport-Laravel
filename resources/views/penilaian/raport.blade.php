@@ -41,7 +41,7 @@
                                         <td>{{ $d->kelas }}</td>
                                         <td>{{ $d->jurusan }} ( {{ $d->kdjurusan }} )</td>
                                         <td>
-                                            <a href="/hasilraport/{{ $d->smid }}" class="btn btn-primary" target="_blank">Lihat</a>
+                                            <a href="/hasilraport/{{ $d->smid }}" class="btn btn-primary" target="_blank"><i class="fas fa-file-pdf"></i> Lihat</a>
                                         </td>
                                     </tr>
                                     @endforeach
