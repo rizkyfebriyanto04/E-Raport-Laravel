@@ -64,8 +64,11 @@ Route::post('updateKehadiran', [PenilaianController::class, 'updateKehadiran']);
 
 Route::get('penilaian', [PenilaianController::class, 'penilaian_nilai'])->name('nilai');
 Route::get('penilaiansiswa/{id}', [PenilaianController::class, 'penilaian_aksi']);
+Route::get('penilaiansiswaimport/{id}', [PenilaianController::class, 'penilaianimportexcel_aksi']);
 Route::get('menampilkannilai/{id}', [PenilaianController::class, 'menampilkannilai']);
 Route::post('penilaiandaftarsiswa', [PenilaianController::class, 'penilaian_update'])->name('penilaian.action');
+Route::post('/penilaian/import', [PenilaianController::class, 'import'])->name('penilaian.import');
+Route::get('/penilaian/export/{id}', [PenilaianController::class, 'exportPenilaian'])->name('penilaian.export');
 
 
 Route::get('raport', [PenilaianController::class, 'digitalraport'])->name('digitalraport');

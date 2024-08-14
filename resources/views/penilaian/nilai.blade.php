@@ -46,6 +46,7 @@
                                             </button> --}}
                                             <a href="#" class="btn btn-primary" data-id="{{ $d->smid }}" data-bs-toggle="modal" data-bs-target="#menampilkannilai">Menampilkan Nilai</a>
                                             <a href="/penilaiansiswa/{{ $d->smid }}" class="btn btn-primary">Input Nilai</a>
+                                            <a href="/penilaiansiswaimport/{{ $d->smid }}" class="btn btn-primary">Input Excel</a>
                                         </td>
                                     </tr>
                                     @endforeach
