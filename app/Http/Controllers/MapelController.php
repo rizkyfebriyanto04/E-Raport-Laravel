@@ -84,10 +84,11 @@ class MapelController extends Controller
         $mapel = Mapel::find($mpid);
         $mapel->matapelajaran = $request->matapelajaran;
         $mapel->nilaikkm = $request->nilaikkm;
-        $mapel->objeckkelasfk = $request->kelas;
-        $mapel->objeckjenismapelfk = $request->jenismapel;
-        $mapel->objectjurusanfk = $request->jurusanmapel;
+        $mapel->objectkelasfk = $request->objectkelasfk;
+        $mapel->objectjenismapelfk = $request->objectjenismapelfk;
+        $mapel->objectjurusanfk = $request->objectjurusanfk;
         $mapel->save();
+
         return redirect()->route('mapel')->with('success', 'Data Berhasil Diubah');
     }
 }

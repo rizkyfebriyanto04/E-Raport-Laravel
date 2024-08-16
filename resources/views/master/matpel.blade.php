@@ -117,7 +117,7 @@
                                                                             <div class="modal-body">
                                                                                 {{-- <div class="form-group"> --}}
                                                                                     <label for="kelas{{ $d->mpid }}">Kelas</label>
-                                                                                    <select class="form-control" id="kelas{{ $d->mpid }}" name="kelas" >
+                                                                                    <select class="form-control" id="kelas{{ $d->mpid }}" name="objectkelasfk" >
                                                                                         <option value="" selected>-- Pilih --</option>
                                                                                         @foreach ($kelas as $k)
                                                                                             <option value="{{ $k->id }}" {{ $d->objectkelasfk == $k->id ? 'selected' : '' }}>
@@ -130,7 +130,7 @@
                                                                             <div class="modal-body">
                                                                                 {{-- <div class="form-group"> --}}
                                                                                     <label for="kelas{{ $d->mpid }}">Jenis Mata Pelajaran</label>
-                                                                                    <select class="form-control" id="kelas{{ $d->mpid }}" name="mapel" >
+                                                                                    <select class="form-control" id="kelas{{ $d->mpid }}" name="objectjenismapelfk" >
                                                                                         <option value="" selected>-- Pilih --</option>
                                                                                         @foreach ($jenismapel as $k)
                                                                                             <option value="{{ $k->id }}" {{ $d->objectjenismapelfk == $k->id ? 'selected' : '' }}>
@@ -143,7 +143,7 @@
                                                                             <div class="modal-body">
                                                                                 {{-- <div class="form-group"> --}}
                                                                                     <label for="kelas{{ $d->mpid }}">Jurusan Mata Pelajaran</label>
-                                                                                    <select class="form-control" id="kelas{{ $d->mpid }}" name="mapel" >
+                                                                                    <select class="form-control" id="kelas{{ $d->mpid }}" name="objectjurusanfk" >
                                                                                         <option value="" selected>-- Pilih --</option>
                                                                                         @foreach ($jurusan as $k)
                                                                                             <option value="{{ $k->id }}" {{ $d->objectjurusanfk == $k->id ? 'selected' : '' }}>
