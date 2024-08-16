@@ -80,13 +80,14 @@ class MapelController extends Controller
 
     public function updatemapel(Request $request, $mpid)
     {
+        // return $mpid;
         $mapel = Mapel::find($mpid);
         $mapel->matapelajaran = $request->matapelajaran;
         $mapel->nilaikkm = $request->nilaikkm;
         $mapel->objeckkelasfk = $request->kelas;
         $mapel->objeckjenismapelfk = $request->jenismapel;
         $mapel->objectjurusanfk = $request->jurusanmapel;
-
+        $mapel->save();
         return redirect()->route('mapel')->with('success', 'Data Berhasil Diubah');
     }
 }
