@@ -11,7 +11,9 @@
                 <br><br>
                 <div class="card">
                     <div class="card-header">
-                        <h4 class="card-title">Data Master Mata Pelajaran</h4>
+                        <h4 class="card-title">Data Master Mata Pelajaran | Kurikulum Merdeka</h4>
+                        {{-- <h5 class="card-title"></h5> --}}
+
                         @if (session('success'))
                             <div class="alert alert-success" id="success-alert">
                                 {{ session('success') }}
@@ -20,17 +22,22 @@
                     </div>
                 </div>
                 <div class="card">
-                    {{-- <div class="card-header">
-                        <h4 class="card-title">Data Master Mata Pelajaran</h4>
-                        @if (session('success'))
-                            <div class="alert alert-success" id="success-alert">
-                                {{ session('success') }}
-                            </div>
-                        @endif
-                    </div> --}}
+                    <div class="card-header">
+                        <h4 class="card-title">Pencarian</h4>
+                        <select class="form-select" id="jurusanDropdown">
+                            <option value="" selected>Pilih Jurusan</option>
+                            <option value="tjkt">Teknik Jaringan dan Telekomunikasi (TJKT)</option>
+                            <option value="mp">Manajemen Perkantoran (MP)</option>
+                            <option value="ulp">Usaha Layanan Pariwisata (ULP)</option>
+                            <option value="bp">Broadcasting dan Perfilman (BP)</option>
+                            <!-- Add more options as needed -->
+                        </select>
+                    </div>
+                </div>
+                <div class="card">
                     <div class="row">
                         <div class="col-md-12">
-                            <div class="card">
+                            <div class="card" id="tjktCard" style="display: none;">
                                 <div class="card-header">
                                     <h5 class="card-title">
                                         Teknik Jaringan dan Telekomunikasi ( TJKT )
@@ -409,7 +416,7 @@
                 <div class="card">
                     <div class="row">
                         <div class="col-md-12">
-                            <div class="card">
+                            <div class="card" id="mpCard" style="display: none;">
                                 <div class="card-header">
                                     <h5 class="card-title">
                                         Manajemen Perkantoran (MP)
@@ -449,7 +456,7 @@
                 <div class="card">
                     <div class="row">
                         <div class="col-md-12">
-                            <div class="card">
+                            <div class="card" id="ulpCard" style="display: none;">
                                 <div class="card-header">
                                     <h5 class="card-title">
                                         Usaha Layanan Pariwisata (ULP)
@@ -489,7 +496,7 @@
                 <div class="card">
                     <div class="row">
                         <div class="col-md-12">
-                            <div class="card">
+                            <div class="card" id="bpCard" style="display: none;">
                                 <div class="card-header">
                                     <h5 class="card-title">
                                         Broadcasting dan Perfilman (BP)
@@ -606,5 +613,53 @@
         setTimeout(function() {
             alertBox.style.display = 'none';
         }, 3000);
+    </script>
+    <script>
+        document.getElementById('jurusanDropdown').addEventListener('change', function() {
+            var selectedValue = this.value;
+            var tjktCard = document.getElementById('tjktCard');
+
+            if (selectedValue === 'tjkt') {
+                tjktCard.style.display = 'block';
+            } else {
+                tjktCard.style.display = 'none';
+            }
+        });
+    </script>
+    <script>
+        document.getElementById('jurusanDropdown').addEventListener('change', function() {
+            var selectedValue = this.value;
+            var tjktCard = document.getElementById('mpCard');
+
+            if (selectedValue === 'mp') {
+                tjktCard.style.display = 'block';
+            } else {
+                tjktCard.style.display = 'none';
+            }
+        });
+    </script>
+    <script>
+        document.getElementById('jurusanDropdown').addEventListener('change', function() {
+            var selectedValue = this.value;
+            var tjktCard = document.getElementById('ulpCard');
+
+            if (selectedValue === 'ulp') {
+                tjktCard.style.display = 'block';
+            } else {
+                tjktCard.style.display = 'none';
+            }
+        });
+    </script>
+    <script>
+        document.getElementById('jurusanDropdown').addEventListener('change', function() {
+            var selectedValue = this.value;
+            var tjktCard = document.getElementById('bpCard');
+
+            if (selectedValue === 'bp') {
+                tjktCard.style.display = 'block';
+            } else {
+                tjktCard.style.display = 'none';
+            }
+        });
     </script>
 @endsection
