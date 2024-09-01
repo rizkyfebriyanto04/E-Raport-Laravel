@@ -98,7 +98,7 @@
                             container.append(`
                                 <div class="mb-3">
                                     <strong>Nama Lengkap:</strong> ${item.namalengkap}<br>
-                                    <strong>Matpel:</strong> ${item.jenismatpel}<br>
+                                    <strong>Matpel:</strong> ${item.matapelajaran}<br>
                                     <strong>Nilai:</strong> ${item.nilai} <!-- Ubah sesuai dengan kolom data Anda -->
                                 </div>
                             `);
