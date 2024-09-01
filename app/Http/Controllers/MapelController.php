@@ -43,16 +43,124 @@ class MapelController extends Controller
                 ->leftJoin('jenismapel_m as jmm', 'jmm.id', '=', 'mp.objectjenismapelfk')
                 ->leftJoin('kelas_m as km', 'km.id', '=', 'mp.objectkelasfk')
                 ->leftJoin('jurusan_m as jm', 'jm.id', '=', 'mp.objectjurusanfk')
-                ->where('km.id', 2)
+                ->where('km.id', 3)
                 ->where('jm.id', 1)
                 ->get();
         // return $tkjxii;
+
+        // tkj
+        $mpx = DB::table('matpel_m as mp')
+                ->select('mp.id as mpid','mp.matapelajaran','mp.nilaikkm','mp.objectkelasfk','mp.objectjenismapelfk','mp.objectjurusanfk','jmm.id as jmmid','jmm.jenismatpel','km.id as kmid','km.kelas','jm.jurusan','jm.id as jmid')
+                // ->select('mp.*','jmm.*','km.*','jm.*','mp.id as mpid')
+                ->leftJoin('jenismapel_m as jmm', 'jmm.id', '=', 'mp.objectjenismapelfk')
+                ->leftJoin('kelas_m as km', 'km.id', '=', 'mp.objectkelasfk')
+                ->leftJoin('jurusan_m as jm', 'jm.id', '=', 'mp.objectjurusanfk')
+                ->where('km.id', 1)
+                ->where('jm.id', 2)
+                ->get();
+        // return $mpx;
+
+        // tkj
+        $mpxi = DB::table('matpel_m as mp')
+                ->select('mp.id as mpid','mp.matapelajaran','mp.nilaikkm','mp.objectkelasfk','mp.objectjenismapelfk','mp.objectjurusanfk','jmm.id as jmmid','jmm.jenismatpel','km.id as kmid','km.kelas','jm.jurusan','jm.id as jmid')
+                // ->select('mp.*','jmm.*','km.*','jm.*','mp.id as mpid')
+                ->leftJoin('jenismapel_m as jmm', 'jmm.id', '=', 'mp.objectjenismapelfk')
+                ->leftJoin('kelas_m as km', 'km.id', '=', 'mp.objectkelasfk')
+                ->leftJoin('jurusan_m as jm', 'jm.id', '=', 'mp.objectjurusanfk')
+                ->where('km.id', 2)
+                ->where('jm.id', 2)
+                ->get();
+        // return $mpxi;
+
+        // tkj
+        $mpxii = DB::table('matpel_m as mp')
+                ->select('mp.id as mpid','mp.matapelajaran','mp.nilaikkm','mp.objectkelasfk','mp.objectjenismapelfk','mp.objectjurusanfk','jmm.id as jmmid','jmm.jenismatpel','km.id as kmid','km.kelas','jm.jurusan','jm.id as jmid')
+                // ->select('mp.*','jmm.*','km.*','jm.*','mp.id as mpid')
+                ->leftJoin('jenismapel_m as jmm', 'jmm.id', '=', 'mp.objectjenismapelfk')
+                ->leftJoin('kelas_m as km', 'km.id', '=', 'mp.objectkelasfk')
+                ->leftJoin('jurusan_m as jm', 'jm.id', '=', 'mp.objectjurusanfk')
+                ->where('km.id', 3)
+                ->where('jm.id', 2)
+                ->get();
+        // return $mpxii;
+
+        // tkj
+        $ulp = DB::table('matpel_m as mp')
+                ->select('mp.id as mpid','mp.matapelajaran','mp.nilaikkm','mp.objectkelasfk','mp.objectjenismapelfk','mp.objectjurusanfk','jmm.id as jmmid','jmm.jenismatpel','km.id as kmid','km.kelas','jm.jurusan','jm.id as jmid')
+                // ->select('mp.*','jmm.*','km.*','jm.*','mp.id as mpid')
+                ->leftJoin('jenismapel_m as jmm', 'jmm.id', '=', 'mp.objectjenismapelfk')
+                ->leftJoin('kelas_m as km', 'km.id', '=', 'mp.objectkelasfk')
+                ->leftJoin('jurusan_m as jm', 'jm.id', '=', 'mp.objectjurusanfk')
+                ->where('km.id', 1)
+                ->where('jm.id', 3)
+                ->get();
+        // return $ulp;
+
+        // tkj
+        $ulpi = DB::table('matpel_m as mp')
+                ->select('mp.id as mpid','mp.matapelajaran','mp.nilaikkm','mp.objectkelasfk','mp.objectjenismapelfk','mp.objectjurusanfk','jmm.id as jmmid','jmm.jenismatpel','km.id as kmid','km.kelas','jm.jurusan','jm.id as jmid')
+                // ->select('mp.*','jmm.*','km.*','jm.*','mp.id as mpid')
+                ->leftJoin('jenismapel_m as jmm', 'jmm.id', '=', 'mp.objectjenismapelfk')
+                ->leftJoin('kelas_m as km', 'km.id', '=', 'mp.objectkelasfk')
+                ->leftJoin('jurusan_m as jm', 'jm.id', '=', 'mp.objectjurusanfk')
+                ->where('km.id', 2)
+                ->where('jm.id', 3)
+                ->get();
+        // return $ulpi;
+
+        // tkj
+        $ulpii = DB::table('matpel_m as mp')
+                ->select('mp.id as mpid','mp.matapelajaran','mp.nilaikkm','mp.objectkelasfk','mp.objectjenismapelfk','mp.objectjurusanfk','jmm.id as jmmid','jmm.jenismatpel','km.id as kmid','km.kelas','jm.jurusan','jm.id as jmid')
+                // ->select('mp.*','jmm.*','km.*','jm.*','mp.id as mpid')
+                ->leftJoin('jenismapel_m as jmm', 'jmm.id', '=', 'mp.objectjenismapelfk')
+                ->leftJoin('kelas_m as km', 'km.id', '=', 'mp.objectkelasfk')
+                ->leftJoin('jurusan_m as jm', 'jm.id', '=', 'mp.objectjurusanfk')
+                ->where('km.id', 3)
+                ->where('jm.id', 3)
+                ->get();
+        // return $ulpii;
+
+        // tkj
+        $bp = DB::table('matpel_m as mp')
+                ->select('mp.id as mpid','mp.matapelajaran','mp.nilaikkm','mp.objectkelasfk','mp.objectjenismapelfk','mp.objectjurusanfk','jmm.id as jmmid','jmm.jenismatpel','km.id as kmid','km.kelas','jm.jurusan','jm.id as jmid')
+                // ->select('mp.*','jmm.*','km.*','jm.*','mp.id as mpid')
+                ->leftJoin('jenismapel_m as jmm', 'jmm.id', '=', 'mp.objectjenismapelfk')
+                ->leftJoin('kelas_m as km', 'km.id', '=', 'mp.objectkelasfk')
+                ->leftJoin('jurusan_m as jm', 'jm.id', '=', 'mp.objectjurusanfk')
+                ->where('km.id', 1)
+                ->where('jm.id', 4)
+                ->get();
+        // return $bp;
+
+        // tkj
+        $bpi = DB::table('matpel_m as mp')
+                ->select('mp.id as mpid','mp.matapelajaran','mp.nilaikkm','mp.objectkelasfk','mp.objectjenismapelfk','mp.objectjurusanfk','jmm.id as jmmid','jmm.jenismatpel','km.id as kmid','km.kelas','jm.jurusan','jm.id as jmid')
+                // ->select('mp.*','jmm.*','km.*','jm.*','mp.id as mpid')
+                ->leftJoin('jenismapel_m as jmm', 'jmm.id', '=', 'mp.objectjenismapelfk')
+                ->leftJoin('kelas_m as km', 'km.id', '=', 'mp.objectkelasfk')
+                ->leftJoin('jurusan_m as jm', 'jm.id', '=', 'mp.objectjurusanfk')
+                ->where('km.id', 2)
+                ->where('jm.id', 4)
+                ->get();
+        // return $bpi;
+
+        // tkj
+        $bpii = DB::table('matpel_m as mp')
+                ->select('mp.id as mpid','mp.matapelajaran','mp.nilaikkm','mp.objectkelasfk','mp.objectjenismapelfk','mp.objectjurusanfk','jmm.id as jmmid','jmm.jenismatpel','km.id as kmid','km.kelas','jm.jurusan','jm.id as jmid')
+                // ->select('mp.*','jmm.*','km.*','jm.*','mp.id as mpid')
+                ->leftJoin('jenismapel_m as jmm', 'jmm.id', '=', 'mp.objectjenismapelfk')
+                ->leftJoin('kelas_m as km', 'km.id', '=', 'mp.objectkelasfk')
+                ->leftJoin('jurusan_m as jm', 'jm.id', '=', 'mp.objectjurusanfk')
+                ->where('km.id', 3)
+                ->where('jm.id', 4)
+                ->get();
+        // return $ulpii;
 
         $kelas = DB::table('kelas_m')->get();
         $jenismapel = DB::table('jenismapel_m')->get();
         $jurusan = DB::table('jurusan_m')->get();
 
-        return view('master.matpel',compact('title','kelas','jenismapel','jurusan','tkjx','tkjxi','tkjxii'));
+        return view('master.matpel',compact('title','kelas','jenismapel','jurusan','tkjx','tkjxi','tkjxii','mpx','mpxi','mpxii','ulp','ulpi','ulpii','bp','bpi','bpii'));
     }
 
     public function mapel_aksi(Request $request)
