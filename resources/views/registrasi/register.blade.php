@@ -140,13 +140,14 @@
                         </div>
                         <label for="role">Role</label>
                         <fieldset class="form-group">
-                            <select class="form-select" id="basicSelect" name="role">
+                            <select class="form-select role-select" name="role">
                                 <option selected>-- Pilih --</option>
                                 <option value="siswa">Siswa</option>
                                 <option value="guru">Guru</option>
                                 <option value="orangtua">Orangtua</option>
                             </select>
                         </fieldset>
+
 
                         <label for="password">Password</label>
                         <div class="form-group">
@@ -163,39 +164,12 @@
                                     @endforeach
                                 </select>
                             </fieldset>
-                            {{-- <div class="col-md-6 mb-4">
-                                <h6>Basic Choices</h6>
-                                <p>Use <code>.choices</code> class for basic choices control.</p>
-                                <div class="form-group">
-                                    <select class="choices form-select">
-                                        <option value="square">Square</option>
-                                        <option value="rectangle">Rectangle</option>
-                                        <option value="rombo">Rombo</option>
-                                        <option value="romboid">Romboid</option>
-                                        <option value="trapeze">Trapeze</option>
-                                        <option value="traible">Triangle</option>
-                                        <option value="polygon">Polygon</option>
-                                    </select>
-                                </div>
-                            </div> --}}
                         </div>
-
-                        {{-- <div id="additional-combobox2" style="display: none;">
-                            <label for="objectorangtuafk">Orangtua</label>
-                            <fieldset class="form-group">
-                                <select class="form-select" id="additionalSelect2" name="objectorangtuafk">
-                                    <option selected>-- Pilih --</option>
-                                    <option value="orangtua1">Orangtua 1</option>
-                                    <option value="orangtua2">Orangtua 2</option>
-                                    <option value="orangtua3">Orangtua 3</option>
-                                </select>
-                            </fieldset>
-                        </div> --}}
 
                         <div id="additional-combobox3" style="display: none;">
                             <label for="objectgurufk">Guru</label>
                             <fieldset class="form-group">
-                                <select class="choices form-select" id="additionalSelect1" name="objectgurufk">
+                                <select class="choices form-select" id="additionalSelect3" name="objectgurufk">
                                     <option selected>--Pilih--</option>
                                     @foreach ($guru as $g)
                                         <option value="{{ $g->id }}">{{ $g->namalengkap }}</option>
@@ -203,6 +177,7 @@
                                 </select>
                             </fieldset>
                         </div>
+
                         {{-- <label for="kategori">Kategori Produk <span class="text-danger">*</span></label>
                         <div class="form-group">
                             <select class="form-control" id="kategori" name="position_id">
@@ -234,33 +209,24 @@
     </section>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script>
-        var alertBox = document.getElementById('success-alert');
-
-        setTimeout(function() {
-            alertBox.style.display = 'none';
-        }, 3000);
-
         $(document).ready(function() {
-            $('#basicSelect').change(function() {
-                if ($(this).val() === 'siswa' || $(this).val() === 'orangtua' ) {
-                    $('#additional-combobox1').show();
+            $('.role-select').change(function() {
+                var selectedRole = $(this).val();
+
+                if (selectedRole === 'siswa' || selectedRole === 'orangtua') {
+                    $('#additional-combobox1').show();  // Tampilkan dropdown Siswa
+                    $('#additional-combobox3').hide();  // Sembunyikan dropdown Guru
+                } else if (selectedRole === 'guru') {
+                    $('#additional-combobox1').hide();  // Sembunyikan dropdown Siswa
+                    $('#additional-combobox3').show();  // Tampilkan dropdown Guru
                 } else {
                     $('#additional-combobox1').hide();
-                }
-
-                // if ($(this).val() === 'orangtua') {
-                //     $('#additional-combobox1').show();
-                // } else {
-                //     $('#additional-combobox1').hide();
-                // }
-
-                if ($(this).val() === 'guru') {
-                    $('#additional-combobox3').show();
-                } else {
                     $('#additional-combobox3').hide();
                 }
             });
         });
+
     </script>
+
 @endsection
 
