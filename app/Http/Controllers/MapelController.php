@@ -189,7 +189,7 @@ class MapelController extends Controller
     public function updatemapel(Request $request, $mpid)
     {
         // return $mpid;
-        $mapel = Mapel::find($mpids);
+        $mapel = Mapel::find($mpid);
         $mapel->matapelajaran = $request->matapelajaran;
         $mapel->nilaikkm = $request->nilaikkm;
         $mapel->objectkelasfk = $request->objectkelasfk;
