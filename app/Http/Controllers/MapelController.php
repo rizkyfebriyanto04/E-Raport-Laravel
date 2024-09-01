@@ -58,7 +58,7 @@ class MapelController extends Controller
     public function mapel_aksi(Request $request)
     {
         // return $request->nilaikkm;
-        $mapelss = new Mapel([
+        $mapel = new Mapel([
             'matapelajaran' => $request->matapelajaran,
             'nilaikkm' => $request->nilaikkm,
             'objectkelasfk' => $request->kelas,
