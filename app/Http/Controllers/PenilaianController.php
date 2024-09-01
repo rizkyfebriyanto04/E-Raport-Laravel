@@ -303,26 +303,30 @@ class PenilaianController extends Controller
                 // return $semesterId;
 
                 if ($matapelajaranId && $siswaId && $semesterId) {
-                    // Update or insert into hasilraport_t
-                    DB::table('hasilraport_t')->updateOrInsert(
-                        [
-                            'objectmatpelfk' => $matapelajaranId,
-                            'objectsiswafk' => $siswaId,
-                            'objectsemesterfk' => $semesterId,
-                        ],
-                        [
-                            'nilai' => $nilai,
-                            'ket' => $ket,
-                        ]
-                    );
-                } else {
-                    // Log missing ID information
-                    Log::warning("Data skipped due to missing ID", [
-                        'matapelajaran' => $matapelajaran,
-                        'namalengkap' => $namalengkap,
-                        'semester' => $semester,
-                        'tahunajaran' => $tahunajaran
-                    ]);
+                    // Check if the record exists
+                    $existingRecord = DB::table('hasilraport_t')
+                        ->where('objectmatpelfk', $matapelajaranId)
+                        ->where('objectsiswafk', $siswaId)
+                        ->where('objectsemesterfk', $semesterId)
+                        ->first();
+
+                    if ($existingRecord) {
+                        // Update the existing record
+                        DB::table('hasilraport_t')
+                            ->where('id', $existingRecord->id)
+                            ->update([
+                                'nilai' => $nilai,
+                                'ket' => $ket,
+                            ]);
+                    } else {
+                        // Log that the record was not found
+                        Log::warning("No existing record found for update", [
+                            'matapelajaran' => $matapelajaran,
+                            'namalengkap' => $namalengkap,
+                            'semester' => $semester,
+                            'tahunajaran' => $tahunajaran
+                        ]);
+                    }
                 }
             } catch (\Exception $e) {
                 // Log exception details
