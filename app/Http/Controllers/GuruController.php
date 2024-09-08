@@ -20,12 +20,13 @@ class GuruController extends Controller
 
     public function guru_aksi(Request $request)
     {
-        $request->validate([
-            'namalengkap' => 'required',
-        ]);
+        // $request->validate([
+        //     'namalengkap' => 'required',
+        // ]);
 
         $guru = new Guru([
             'namalengkap' => $request->namalengkap,
+            'nuptk' => $request->nuptk,
         ]);
 
         $guru->save();
@@ -41,12 +42,13 @@ class GuruController extends Controller
 
     public function updateguru(Request $request, $id)
     {
-        $request->validate([
-            'namalengkap' => 'required',
-        ]);
+        // $request->validate([
+        //     'namalengkap' => 'required',
+        // ]);
 
         $guru = Guru::find($id);
         $guru->namalengkap = $request->namalengkap;
+        $guru->nuptk = $request->nuptk;
         $guru->save();
 
         return redirect()->route('guru')->with('success', 'Data Berhasil Diubah');

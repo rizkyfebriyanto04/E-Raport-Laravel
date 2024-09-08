@@ -140,8 +140,6 @@ class SiswaController extends Controller
 
     public function updatesiswa(Request $request, $id)
     {
-        // return $request;
-
         $siswa = Siswa::find($id);
         $siswa->namalengkap = $request->namalengkap;
         $siswa->nisn = $request->nisn;
@@ -155,6 +153,32 @@ class SiswaController extends Controller
         $siswa->alamat = $request->alamat;
         $siswa->nohp = $request->nohp;
         $siswa->save();
+
+        // Delete existing hasilraport_t records for this student
+            DB::table('hasilraport_t')
+            ->where('objectsiswafk', $siswa->id)
+            ->delete();
+
+        // Get the subjects (matpel) for the updated student based on their class and major
+        $matpel = DB::table('matpel_m')
+            ->where('objectkelasfk', $siswa->objectkelasfk)
+            ->where('objectjurusanfk', $siswa->objectjurusanfk)
+            ->get();
+
+        // Prepare new hasilraport_t records for insertion
+        $paketmatpel = [];
+        foreach ($matpel as $m) {
+            $paketmatpel[] = [
+                'objectmatpelfk' => $m->id,
+                'objectsiswafk' => $siswa->id,
+                'objectsemesterfk' => $siswa->objectsemesterfk,
+                'nilai' => 0,
+                'ket' => '-',
+            ];
+        }
+
+        // Insert new hasilraport_t records
+        DB::table('hasilraport_t')->insert($paketmatpel);
 
         return redirect()->route('siswa')->with('success', 'Data Berhasil Diubah');
     }

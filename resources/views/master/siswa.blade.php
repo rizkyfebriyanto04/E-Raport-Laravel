@@ -98,7 +98,7 @@
                                                                     </div>
                                                                     <div class="form-group">
                                                                         <label for="nisn{{ $d->id }}">NISN</label>
-                                                                        <input type="text" class="form-control" id="nisn{{ $d->id }}" name="nisn" value="{{ $d->nisn }}" disabled>
+                                                                        <input type="text" class="form-control" id="nisn{{ $d->id }}" name="nisn" value="{{ $d->nisn }}">
                                                                     </div>
                                                                     <div class="form-group">
                                                                         <label for="ttl{{ $d->id }}">Tanggal Lahir</label>
@@ -213,9 +213,9 @@
                                     <input class="form-control" id="NameLengkap" type="text" name="namalengkap" placeholder="Nama Lengkap"/>
                                 </div>
                                 <label for="nisn">NISN</label>
-<div class="form-group">
-    <input class="form-control" id="nisn" type="text" name="nisn" value="{{ $nisn }}" disabled/>
-</div>
+                                <div class="form-group">
+                                    <input class="form-control" id="nisn" type="text" name="nisn" value="{{ $nisn }}" disabled/>
+                                </div>
 
 
                                 <label for="kls">Kelas</label>

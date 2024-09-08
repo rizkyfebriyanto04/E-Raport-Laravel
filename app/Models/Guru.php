@@ -13,5 +13,6 @@ class Guru extends Model
     protected $fillable = [
         'id',
         'namalengkap',
+        'nuptk'
     ];
 }

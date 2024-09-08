@@ -166,6 +166,20 @@ class MapelController extends Controller
     public function mapel_aksi(Request $request)
     {
         // return $request->nilaikkm;
+
+        $exists = DB::table('matpel_m')
+        ->where('matapelajaran', $request->matapelajaran)
+        ->where('objectkelasfk', $request->kelas)
+        ->where('objectjenismapelfk', $request->jurusan)
+        ->where('objectjurusanfk', $request->jurusanmapel)
+        ->exists();
+
+        if ($exists) {
+            // Return with an error message if mata pelajaran already exists
+            return redirect()->route('mapel')
+                ->with('error', 'Mata Pelajaran sudah ada.');
+        }
+
         $mapel = new Mapel([
             'matapelajaran' => $request->matapelajaran,
             'nilaikkm' => $request->nilaikkm,

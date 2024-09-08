@@ -25,6 +25,7 @@
                                     <tr>
                                         <th>No</th>
                                         <th>Nama guru</th>
+                                        <th>NUPTK</th>
                                         <th>Aksi</th>
                                     </tr>
                                 </thead>
@@ -36,6 +37,7 @@
                                     <tr>
                                         <td>{{ $no++ }}</td>
                                         <td>{{ $d->namalengkap }}</td>
+                                        <td>{{ $d->nuptk }}</td>
                                         <td>
                                             <form id="delete-form-{{ $d->id }}" action="{{ route('guru.hapusguru', $d->id) }}" method="POST" style="display: inline;">
                                                 @csrf
@@ -67,6 +69,10 @@
                                                         <div class="form-group">
                                                             <label for="NameLengkap">Nama Lengkap</label>
                                                             <input type="text" class="form-control" id="NameLengkap" name="namalengkap" value="{{ $d->namalengkap }}" required>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="NameLengkap">NUPTK</label>
+                                                            <input type="text" class="form-control" id="NameLengkap" name="nuptk" value="{{ $d->nuptk }}" required>
                                                         </div>
                                                     </div>
                                                     <div class="modal-footer">
@@ -114,6 +120,10 @@
                         <label for="NameLengkap">Nama Lengkap</label>
                         <div class="form-group">
                             <input class="form-control" id="NameLengkap" type="text" name="namalengkap" placeholder="Nama Lengkap" required/>
+                        </div>
+                        <label for="NameLengkap">NUPTK</label>
+                        <div class="form-group">
+                            <input class="form-control" id="NameLengkap" type="text" name="nuptk" placeholder="Nama Lengkap" required/>
                         </div>
                     </div>
                     <div class="modal-footer">

@@ -180,6 +180,57 @@
 
             </tbody>
         </table>
+        <tr>
+            <td style="padding-top:70px">
+                <table width="85%" cellspacing="0" cellpadding="0" border="0" align="center">
+                    <tr>
+                        <!-- Tanggal -->
+                        <td width="55%">
+                            <!-- Tempat kosong untuk spasi jika diperlukan -->
+                        </td>
+                        <td width="45%" align="center">
+                        </td>
+                    </tr>
+                    <tr>
+                        <!-- Tanda Tangan dan QR Code -->
+                        <td width="55%">
+                            <!-- Tempat kosong untuk spasi jika diperlukan -->
+                        </td>
+                        <td width="45%" style="text-align: center;">
+                            <font style="font-size: 12pt;" color="#000000">Bandung, {{ now()->format('d F Y') }}</font>
+                            <!-- Tempat untuk tanda tangan -->
+                            <div style=" width: 250px; margin: 20px auto;">
+                                <p style="color: #000000;">Kepala Sekolah</p>
+                            </div>
+                            <!-- QR Code -->
+                            <?php
+                                    // Teks pesan
+                                        $pesan = 'Ditandatangani secara elektronik oleh : Kepala Sekolah SMK AL Amanah Rizal Alamsyah, M.pd NUKS : 19023L20550208241076689';
+                                        $jsonData = json_encode($pesan);
+                                        $qrCodeUrl = "https://api.qrserver.com/v1/create-qr-code/?data=" . urlencode($jsonData);
+                                        echo '<img style="margin-top: 5px;" src="' . $qrCodeUrl . '" alt="QR Code" width="75" height="75" />';
+                                    ?>
+                                    <br><br>
+                            {{-- <img src="{{ asset('path-to-qr-code.png') }}" alt="QR Code" style="margin-top: 20px;"> --}}
+                            ( Rizal Alamsyah, M.pd )
+                            <br>
+                            NUKS : 19023L20550208241076689
+                        </td>
+                    </tr>
+                    <tr>
+                        <!-- Informasi Tambahan -->
+                        <td width="50%">
+                            <!-- Tempat kosong untuk spasi jika diperlukan -->
+                        </td>
+                        <td width="50%" align="center">
+                            <!-- Tempat kosong untuk spasi jika diperlukan -->
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+
+
         <br>
     </div>
 </body>
