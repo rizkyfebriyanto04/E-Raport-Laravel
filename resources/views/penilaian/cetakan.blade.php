@@ -164,6 +164,7 @@
         <table border="1">
             <thead>
                 <tr>
+                    <th>Hadir</th>
                     <th>Sakit</th>
                     <th>Izin</th>
                     <th>Tanpa Keterangan</th>
@@ -172,6 +173,7 @@
             <tbody>
                 @foreach($kehadiran as $n)
                 <tr>
+                    <td>{{ $n->hadir }} Hari</td>
                     <td>{{ $n->sakit }} Hari</td>
                     <td>{{ $n->izin }} Hari</td>
                     <td>{{ $n->tanpa_keterangan }} Hari</td>

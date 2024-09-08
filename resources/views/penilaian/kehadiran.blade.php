@@ -37,15 +37,19 @@
                         <div class="card-content">
                             <div class="card-body">
                                 <div class="row">
-                                    <div class="col-sm-4">
+                                    <div class="col-sm-3">
+                                        <h6 style="text-align: center;">Hadir</h6>
+                                        <input id="hadir-input" class="form-control" type="number" placeholder="Hadir">
+                                    </div>
+                                    <div class="col-sm-3">
                                         <h6 style="text-align: center;">Sakit</h6>
                                         <input id="sakit-input" class="form-control" type="number" placeholder="Sakit">
                                     </div>
-                                    <div class="col-sm-4">
+                                    <div class="col-sm-3">
                                         <h6 style="text-align: center;">Izin</h6>
                                         <input id="izin-input" class="form-control" type="number" placeholder="Izin">
                                     </div>
-                                    <div class="col-sm-4">
+                                    <div class="col-sm-3">
                                         <h6 style="text-align: center;">Tanpa Keterangan</h6>
                                         <input id="tanpa-keterangan-input" class="form-control" type="number" placeholder="Tanpa Kehadiran">
                                     </div>
@@ -95,6 +99,7 @@
                 .then(data => {
                     // Assuming you want to show the first record
                     if (data.length > 0) {
+                        document.getElementById('hadir-input').value = data[0].hadir;
                         document.getElementById('sakit-input').value = data[0].sakit;
                         document.getElementById('izin-input').value = data[0].izin;
                         document.getElementById('tanpa-keterangan-input').value = data[0].tanpaKeterangan;
@@ -111,12 +116,14 @@
             const siswaId = siswaSelect.value;
             const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
 
+            const hadir = document.getElementById('hadir-input').value;
             const sakit = document.getElementById('sakit-input').value;
             const izin = document.getElementById('izin-input').value;
             const tanpaKeterangan = document.getElementById('tanpa-keterangan-input').value;
 
             const data = {
                 siswaId: siswaId,
+                hadir: hadir,
                 sakit: sakit,
                 izin: izin,
                 tanpaKeterangan: tanpaKeterangan

@@ -30,6 +30,7 @@ class PenilaianController extends Controller
                 ->get();
         $data = $kehadiran->map(function($item) {
             return [
+                'hadir' => $item->hadir,
                 'sakit' => $item->sakit,
                 'izin' => $item->izin,
                 'tanpaKeterangan' => $item->tanpa_keterangan,
@@ -42,6 +43,7 @@ class PenilaianController extends Controller
 
     public function updateKehadiran(Request $request) {
         $siswaId = $request->input('siswaId');
+        $hadir = $request->input('hadir');
         $sakit = $request->input('sakit');
         $izin = $request->input('izin');
         $tanpaKeterangan = $request->input('tanpaKeterangan');
@@ -55,6 +57,7 @@ class PenilaianController extends Controller
             DB::table('kehadiran_t')
                 ->where('objectsiswafk', $siswaId)
                 ->update([
+                    'hadir' => $hadir,
                     'sakit' => $sakit,
                     'izin' => $izin,
                     'tanpa_keterangan' => $tanpaKeterangan,
@@ -64,6 +67,7 @@ class PenilaianController extends Controller
             DB::table('kehadiran_t')
                 ->insert([
                     'objectsiswafk' => $siswaId,
+                    'hadir' => $hadir,
                     'sakit' => $sakit,
                     'izin' => $izin,
                     'tanpa_keterangan' => $tanpaKeterangan,
