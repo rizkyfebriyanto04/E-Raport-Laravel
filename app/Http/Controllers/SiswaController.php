@@ -35,7 +35,7 @@ class SiswaController extends Controller
     private function generateNisn()
     {
         $currentYear = date('y');
-        $codePrefix = '16.010';
+        $codePrefix = '22.23.02';
 
 
         $lastNisn = DB::table('siswa_m')
